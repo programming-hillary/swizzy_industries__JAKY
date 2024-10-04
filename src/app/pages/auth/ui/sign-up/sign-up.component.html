@@ -1,0 +1,78 @@
+<div class="wrapper">
+  <mat-card
+    class="bg-light"
+    appearance="outlined"
+    style="padding: 2rem 1rem; width: 400px; font-size: 12px"
+  >
+    <mat-card-content class="signup-form w-100">
+      <form
+        [formGroup]="register_form"
+        (ngSubmit)="submitForm(register_form)"
+      >
+        <mat-form-field class="w-100" style="padding-block-start: 1rem;">
+          <fa-icon matPrefix [icon]="faUser"></fa-icon>
+          <mat-label style="font-size: 12px;">Username</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="userName"
+            [errorStateMatcher]="matcher"
+            placeholder="Username"
+            style="font-size: 12px"
+          />
+        </mat-form-field>
+        <mat-form-field class="w-100" style="padding-block-start: 1rem;">
+          <fa-icon matPrefix [icon]="faMail"></fa-icon>
+          <mat-label style="font-size: 12px;">Email</mat-label>
+          <input
+            matInput
+            type="email"
+            formControlName="email"
+            [errorStateMatcher]="matcher"
+            placeholder="Email"
+            style="font-size: 12px"
+          />
+        </mat-form-field>
+        <mat-form-field class="w-100" style="padding-block-start: 1rem;">
+          <fa-icon matPrefix [icon]="faPassword"></fa-icon>
+          <mat-label style="font-size: 12px;">Password</mat-label>
+          <input
+            matInput
+            type="password"
+            formControlName="password"
+            [errorStateMatcher]="matcher"
+            placeholder="Password"
+            style="font-size: 12px"
+          />
+        </mat-form-field>
+        <mat-form-field class="w-100" style="padding-block-start: 1rem;">
+          <fa-icon matPrefix [icon]="faPassword"></fa-icon>
+          <mat-label style="font-size: 12px;">Confirm password</mat-label>
+          <input
+            matInput
+            type="password"
+            formControlName="confirmPassowrd"
+            [errorStateMatcher]="matcher"
+            placeholder="Confirm password"
+            style="font-size: 12px"
+          />
+        </mat-form-field>
+        <button
+          mat-flat-button
+          class="signup-form-button text-uppercase bg-primary text-dark"
+          style="flex: 1; margin-bottom: 1rem; border-radius: 0.5rem;"
+        >
+          Sign Up
+        </button>
+      </form>
+      <div class="row align-items-center justify-content-between">
+        <p class="text-dark col-6" style="margin: auto 0">
+          Already have an account?
+        </p>
+        <button (click)="signInBtnClicked()" mat-raised-button class="text-dark col-6 text-capitallize" style="flex: 1">
+          Sign In
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

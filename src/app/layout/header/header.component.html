@@ -1,0 +1,99 @@
+<div #header class="container-fluid px-0">
+  <div class="row gx-0 d-none d-lg-flex" style="font-size: 0.75rem">
+    <div class="col-lg-7 px-5 text-start">
+      <div class="h-100 d-inline-flex align-items-center py-2 me-4">
+        <fa-icon [icon]="faEnvelope" class="me-2"></fa-icon>
+        <p class="mb-0">info&#64;jackytech.com</p>
+      </div>
+      <div class="h-100 d-inline-flex align-items-center py-2">
+        <fa-icon [icon]="faPhone" class="me-2"></fa-icon>
+        <p class="mb-0">+254 708 654984</p>
+      </div>
+    </div>
+    <div class="col-lg-5 px-5 text-end">
+      <div class="d-inline-flex align-items-center py-2">
+        <a class="me-3 text-secondary"
+          ><fa-icon [icon]="faFacebookF"></fa-icon
+        ></a>
+        <a class="me-3 text-secondary"
+          ><fa-icon [icon]="faXTwitter"></fa-icon
+        ></a>
+        <a class="me-3 text-secondary"
+          ><fa-icon [icon]="faLinkedinIn"></fa-icon
+        ></a>
+        <a class="me-3 text-secondary"
+          ><fa-icon [icon]="faInstagram"></fa-icon
+        ></a>
+        <a class="text-secondary"><fa-icon [icon]="faYoutube"></fa-icon></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Header Start -->
+<div class="container-fluid px-0 sticky-top shadow bg-dark" style="position: sticky; top: 0;">
+  <nav
+    class="navbar navbar-expand-lg bg-dark navbar-light p-3 p-lg-0"
+    style="font-size: 0.875rem"
+  >
+    <div
+      class="col-lg-4 bg-dark d-flex d-lg-none justify-content-between w-100"
+    >
+      <a [routerLink]="['']" class="navbar-brand h-100 m-0 p-0">
+        <img [src]="'assets/images/logo/logo_white.png'" height="30" />
+      </a>
+      <button
+        type="button"
+        mat-icon-button
+        (click)="onToggleDrawer($event)"
+      >
+        <fa-icon class="text-white" [icon]="faMenu"></fa-icon>
+      </button>
+    </div>
+    <div
+      class="col-lg-8 d-none d-lg-flex w-100 shadow justify-content-between align-items-center"
+    >
+      <a
+        [routerLink]="['']"
+        class="navbar-brand px-5 h-100d-flex align-items-center"
+      >
+        <img [src]="'assets/images/logo/logo_white.png'" height="35" />
+      </a>
+      <span class="example-spacer"></span>
+      <div
+        class="collapse navbar-collapse justify-content-between d-none d-lg-block text-uppercase"
+        id="navbarCollapse"
+      >
+        <div class="navbar-nav mr-auto py-0 gap-5">
+          <a
+            [routerLink]="['']"
+            routerLinkActive=""
+            class="nav-item nav-link text-white"
+            >About</a
+          >
+          <a
+            [routerLink]="['']"
+            routerLinkActive=""
+            class="nav-item nav-link text-white"
+            >Categories</a
+          >
+          <a
+            [routerLink]="['']"
+            routerLinkActive=""
+            class="nav-item nav-link text-white"
+            >My Pins</a
+          >
+          <!-- <a class="nav-item nav-link text-white">{{headerHeight}} Link</a> -->
+        </div>
+        <span class="example-spacer"></span>
+        <a
+          [routerLink]="['']"
+          class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block"
+          style="font-size: 0.75rem"
+          >Fresh Designs</a
+        >
+      </div>
+    </div>
+  </nav>
+</div>
+<!-- Header End -->

@@ -1,0 +1,64 @@
+<div class="wrapper">
+  <mat-card
+    class="bg-light"
+    appearance="outlined"
+    style="padding: 2rem 1rem; width: 400px; font-size: 12px"
+  >
+    <mat-card-content class="login-form w-100">
+      <form
+        [formGroup]="login_form"
+        (ngSubmit)="submitForm(login_form)"
+      >
+        <mat-form-field class="w-100" style="padding-block-start: 1rem;">
+          <fa-icon matPrefix [icon]="faUser"></fa-icon>
+          <mat-label style="font-size: 12px;">Username</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="userName"
+            [errorStateMatcher]="matcher"
+            placeholder="Username"
+            style="font-size: 12px"
+          />
+        </mat-form-field>
+        <mat-form-field class="w-100" style="padding-block-start: 1rem;">
+          <fa-icon matPrefix [icon]="faPassword"></fa-icon>
+          <mat-label style="font-size: 12px;">Password</mat-label>
+          <input
+            matInput
+            type="password"
+            formControlName="password"
+            [errorStateMatcher]="matcher"
+            placeholder="Password"
+            style="font-size: 12px"
+          />
+        </mat-form-field>
+        <div class="container-fluid">
+          <div class="row align-items-center justify-content-between">
+            <div class="col-6 px-0">
+              <mat-checkbox style="font-size: 12px">Remember me</mat-checkbox>
+            </div>
+            <div class="col-6 text-end px-0">
+              <a>Forgot password</a>
+            </div>
+          </div>
+        </div>
+        <button
+          mat-flat-button
+          class="login-form-button text-uppercase bg-primary text-dark"
+          style="flex: 1; margin-bottom: 1rem; border-radius: 0.5rem;"
+        >
+          Log In
+        </button>
+      </form>
+      <div class="row align-items-center justify-content-between">
+        <p class="text-dark col-6" style="margin: auto 0">
+          Don't have an account?
+        </p>
+        <button (click)="signUpBtnClicked()"  mat-raised-button class="text-dark col-6" style="flex: 1">
+          Register Now
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
