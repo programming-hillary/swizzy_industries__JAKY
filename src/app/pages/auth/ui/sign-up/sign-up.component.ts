@@ -17,7 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faLock, faMailBulk, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelopeOpen, faLock, faUser } from '@fortawesome/free-solid-svg-icons';
 
 import { ErrorStateMatcher } from '@angular/material/core';
 
@@ -30,7 +30,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     return !!(
       control &&
       control.invalid &&
-      (control.dirty || control.touched || isSubmitted)
+      (control.dirty || isSubmitted)
     );
   }
 }
@@ -53,7 +53,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class SignUpComponent {
   faUser = faUser;
   faPassword = faLock;
-  faMail = faMailBulk;
+  faMail = faEnvelopeOpen;
 
   fb: NonNullableFormBuilder = inject(NonNullableFormBuilder);
   router: Router = inject(Router)

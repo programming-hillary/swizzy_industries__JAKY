@@ -1,3 +1,11 @@
+.auth-wrapper {
+  position: absolute;
+  inset: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  z-index: -1;
+}
+
 .wrapper {
   position: relative;
   display: flex;
@@ -7,22 +15,13 @@
   flex-direction: column;
   justify-content: space-between;
 
-  .auth-wrapper {
-    position: absolute;
-    inset: 0;
-    min-height: 100vh;
-    min-height: 100dvh;
-    z-index: -1;
+  background-color: rgb(209, 209, 209);
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  mix-blend-mode: darken;
+}
 
-    background-color: rgb(172, 172, 172);
-    background-position: bottom;
-    background-repeat: no-repeat;
-    background-size: cover;
-    mix-blend-mode: darken
-  }
-
-  .content-area {
-    min-height: 50vh;
-    min-height: 50dvh;
-  }
+.content-area {
+  margin: auto auto;
 }

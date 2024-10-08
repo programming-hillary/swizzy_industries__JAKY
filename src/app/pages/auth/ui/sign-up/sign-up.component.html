@@ -9,57 +9,57 @@
         [formGroup]="register_form"
         (ngSubmit)="submitForm(register_form)"
       >
-        <mat-form-field class="w-100" style="padding-block-start: 1rem;">
-          <fa-icon matPrefix [icon]="faUser"></fa-icon>
-          <mat-label style="font-size: 12px;">Username</mat-label>
+        <mat-form-field class="w-100">
+          <fa-icon matPrefix [icon]="faUser" style="padding-inline-start: 0.5rem;"></fa-icon>
+          <mat-label style="font-size: 12px; padding-inline-start: 0.5rem; padding-inline-start: 0.5rem;">Username</mat-label>
           <input
             matInput
             type="text"
             formControlName="userName"
             [errorStateMatcher]="matcher"
             placeholder="Username"
-            style="font-size: 12px"
+            style="font-size: 12px; padding-inline-start: 0.5rem;"
           />
         </mat-form-field>
-        <mat-form-field class="w-100" style="padding-block-start: 1rem;">
-          <fa-icon matPrefix [icon]="faMail"></fa-icon>
-          <mat-label style="font-size: 12px;">Email</mat-label>
+        <mat-form-field class="w-100" style="padding-block-start: 0.5rem;">
+          <fa-icon matPrefix [icon]="faMail" style="padding-inline-start: 0.5rem;"></fa-icon>
+          <mat-label style="font-size: 12px; padding-inline-start: 0.5rem;">Email</mat-label>
           <input
             matInput
             type="email"
             formControlName="email"
             [errorStateMatcher]="matcher"
             placeholder="Email"
-            style="font-size: 12px"
+            style="font-size: 12px; padding-inline-start: 0.5rem;"
           />
         </mat-form-field>
-        <mat-form-field class="w-100" style="padding-block-start: 1rem;">
-          <fa-icon matPrefix [icon]="faPassword"></fa-icon>
-          <mat-label style="font-size: 12px;">Password</mat-label>
+        <mat-form-field class="w-100" style="padding-block-start: 0.5rem;">
+          <fa-icon matPrefix [icon]="faPassword" style="padding-inline-start: 0.5rem;"></fa-icon>
+          <mat-label style="font-size: 12px; padding-inline-start: 0.5rem;">Password</mat-label>
           <input
             matInput
             type="password"
             formControlName="password"
             [errorStateMatcher]="matcher"
             placeholder="Password"
-            style="font-size: 12px"
+            style="font-size: 12px; padding-inline-start: 0.5rem;"
           />
         </mat-form-field>
-        <mat-form-field class="w-100" style="padding-block-start: 1rem;">
-          <fa-icon matPrefix [icon]="faPassword"></fa-icon>
-          <mat-label style="font-size: 12px;">Confirm password</mat-label>
+        <mat-form-field class="w-100" style="padding-block-start: 0.5rem;">
+          <fa-icon matPrefix [icon]="faPassword" style="padding-inline-start: 0.5rem;"></fa-icon>
+          <mat-label style="font-size: 12px; padding-inline-start: 0.5rem;">Confirm password</mat-label>
           <input
             matInput
             type="password"
             formControlName="confirmPassowrd"
             [errorStateMatcher]="matcher"
             placeholder="Confirm password"
-            style="font-size: 12px"
+            style="font-size: 12px; padding-inline-start: 0.5rem;"
           />
         </mat-form-field>
         <button
           mat-flat-button
-          class="signup-form-button text-uppercase bg-primary text-dark"
+          class="signup-form-button text-uppercase text-light"
           style="flex: 1; margin-bottom: 1rem; border-radius: 0.5rem;"
         >
           Sign Up
