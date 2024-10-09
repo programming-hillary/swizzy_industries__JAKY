@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/jaky-stores/browser",
+    "public": "dist/jaky-stores",
     "ignore": [
       "firebase.json",
       "**/.*",
