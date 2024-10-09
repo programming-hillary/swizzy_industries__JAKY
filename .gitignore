@@ -37,6 +37,7 @@ yarn-error.log
 testem.log
 /typings
 /angular-16-complete-course-main
+/.firebase
 
 # System files
 .DS_Store
