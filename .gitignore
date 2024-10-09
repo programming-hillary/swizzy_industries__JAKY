@@ -38,6 +38,7 @@ testem.log
 /typings
 /angular-16-complete-course-main
 /.firebase
+/.github
 
 # System files
 .DS_Store
