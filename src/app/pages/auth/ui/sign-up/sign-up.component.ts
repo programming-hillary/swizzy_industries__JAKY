@@ -20,6 +20,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faEnvelope, faEnvelopeOpen, faLock, faUnlockKeyhole, faUser } from '@fortawesome/free-solid-svg-icons';
 
 import { ErrorStateMatcher } from '@angular/material/core';
+import { SignUpService } from '../../providers/auth/sign-up.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -58,6 +59,8 @@ export class SignUpComponent {
   fb: NonNullableFormBuilder = inject(NonNullableFormBuilder);
   router: Router = inject(Router)
 
+  signUpService: SignUpService = inject(SignUpService)
+
   register_form: FormGroup<{
     userName: FormControl<string>;
     password: FormControl<string>;
@@ -74,6 +77,16 @@ export class SignUpComponent {
 
   submitForm(form: any): void {
     if (this.register_form.valid) {
+      this.signUpService.handleEmailPasswordSignUp(this.register_form.value.email!, this.register_form.value.password!).subscribe({
+        next: (res) => {
+          console.log(res)
+        },
+
+        error: (err) => {
+          console.log(err)
+        }
+      })
+
       form.reset();
     } else {
       Object.values(this.register_form.controls).forEach((control) => {
