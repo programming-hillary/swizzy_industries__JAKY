@@ -17,7 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faEnvelopeOpen, faLock, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faEnvelopeOpen, faLock, faUnlockKeyhole, faUser } from '@fortawesome/free-solid-svg-icons';
 
 import { ErrorStateMatcher } from '@angular/material/core';
 
@@ -52,8 +52,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class SignUpComponent {
   faUser = faUser;
-  faPassword = faLock;
-  faMail = faEnvelopeOpen;
+  faPassword = faUnlockKeyhole;
+  faMail = faEnvelope;
 
   fb: NonNullableFormBuilder = inject(NonNullableFormBuilder);
   router: Router = inject(Router)
@@ -74,7 +74,6 @@ export class SignUpComponent {
 
   submitForm(form: any): void {
     if (this.register_form.valid) {
-      console.log(form);
       form.reset();
     } else {
       Object.values(this.register_form.controls).forEach((control) => {

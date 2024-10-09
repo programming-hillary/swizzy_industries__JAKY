@@ -66,7 +66,6 @@ export class LoginComponent {
 
   submitForm(form: any): void {
     if (this.login_form.valid) {
-      console.log(form);
       form.reset()
     } else {
       Object.values(this.login_form.controls).forEach((control) => {
