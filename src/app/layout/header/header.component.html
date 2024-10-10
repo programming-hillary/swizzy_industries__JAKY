@@ -1,30 +1,22 @@
-<div #header class="container-fluid px-0">
+<div #header class="container-fluid px-0 bg-secondary">
   <div class="row gx-0 d-none d-lg-flex" style="font-size: 0.75rem">
     <div class="col-lg-7 px-5 text-start">
       <div class="h-100 d-inline-flex align-items-center py-2 me-4">
-        <fa-icon [icon]="faEnvelope" class="me-2"></fa-icon>
-        <p class="mb-0">info&#64;jackytech.com</p>
+        <fa-icon [icon]="faEnvelope" class="me-2 text-white"></fa-icon>
+        <p class="mb-0 text-white">info&#64;jackytech.com</p>
       </div>
       <div class="h-100 d-inline-flex align-items-center py-2">
-        <fa-icon [icon]="faPhone" class="me-2"></fa-icon>
-        <p class="mb-0">+254 708 654984</p>
+        <fa-icon [icon]="faPhone" class="me-2 text-white"></fa-icon>
+        <p class="mb-0 text-white">+254 708 654984</p>
       </div>
     </div>
     <div class="col-lg-5 px-5 text-end">
       <div class="d-inline-flex align-items-center py-2">
-        <a class="me-3 text-secondary"
-          ><fa-icon [icon]="faFacebookF"></fa-icon
-        ></a>
-        <a class="me-3 text-secondary"
-          ><fa-icon [icon]="faXTwitter"></fa-icon
-        ></a>
-        <a class="me-3 text-secondary"
-          ><fa-icon [icon]="faLinkedinIn"></fa-icon
-        ></a>
-        <a class="me-3 text-secondary"
-          ><fa-icon [icon]="faInstagram"></fa-icon
-        ></a>
-        <a class="text-secondary"><fa-icon [icon]="faYoutube"></fa-icon></a>
+        <a class="me-3 text-white"><fa-icon [icon]="faFacebookF"></fa-icon></a>
+        <a class="me-3 text-white"><fa-icon [icon]="faXTwitter"></fa-icon></a>
+        <a class="me-3 text-white"><fa-icon [icon]="faLinkedinIn"></fa-icon></a>
+        <a class="me-3 text-white"><fa-icon [icon]="faInstagram"></fa-icon></a>
+        <a class="text-white"><fa-icon [icon]="faYoutube"></fa-icon></a>
       </div>
     </div>
   </div>
@@ -85,23 +77,22 @@
         </div>
         <span class="example-spacer"></span>
         @if( isLoggedIn ) {
-          <div class="py-4 text-uppercase bg-primary d-none d-lg-block">
-            <div class="container">
-              <div class="row">
-                <div class="col-3">
-                  <fa-icon [icon]="faUser"></fa-icon>
-                </div>
-                <div class="col-9">Username</div>
+        <div class="py-4 px-md-3 text-uppercase d-none d-lg-block">
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <fa-icon [icon]="faUser" style="font-size: 1.50rem"></fa-icon>
               </div>
             </div>
           </div>
+        </div>
         } @else {
-          <a
-            [routerLink]="['']"
-            class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block text-uppercase"
-            style="font-size: 0.75rem"
-            >Login</a
-            >
+        <a
+          [routerLink]="['']"
+          class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block text-uppercase"
+          style="font-size: 0.75rem"
+          >Login</a
+        >
         }
       </div>
     </div>

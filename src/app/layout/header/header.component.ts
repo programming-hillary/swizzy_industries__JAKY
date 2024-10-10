@@ -37,6 +37,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   faXTwitter = faXTwitter
 
   isLoggedIn!: boolean
+  userName: string = ''
+
   private userSubscription!: Subscription
 
   userService: UserService = inject(UserService)
@@ -46,6 +48,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.userSubscription = this.userService.createdUser.subscribe(
       (user) => {
         if(user) {
+          this.userName = user.email
           this.isLoggedIn = true
         } else {
           this.isLoggedIn = false

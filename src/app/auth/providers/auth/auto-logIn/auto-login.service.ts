@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { User } from '../../../models/users/user';
 import { UserService } from '../../users/user-service.service';
 import { LogoutService } from '../logout/logout.service';
+import { AutoLogout } from '../auto-logout/auto-logout.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { LogoutService } from '../logout/logout.service';
 export class AutoLoginService {
 
   userCreated: UserService = inject(UserService)
-  autoLogout: LogoutService = inject(LogoutService)
+  autoLogout: AutoLogout = inject(AutoLogout)
 
   handleAutoLogin() {
     const user = JSON.parse(localStorage.getItem('user')!)

@@ -1,18 +1,16 @@
 import { inject, Injectable } from '@angular/core'
-import { LoginService } from '../auth/login/login.service'
-import { tap } from 'rxjs/operators'
 import { User } from '../../models/users/user'
-import { Subject } from 'rxjs'
-import { LogoutService } from '../auth/logout/logout.service'
+import { BehaviorSubject, Subject } from 'rxjs'
+import { AutoLogout } from '../auth/auto-logout/auto-logout.service'
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
 
-  createdUser = new Subject<User | null>()
+  createdUser = new BehaviorSubject<User | null>(null)
 
-  autoLogout: LogoutService = inject(LogoutService)
+  autoLogout: AutoLogout = inject(AutoLogout)
 
   handleCreateUser(res: any) {
     const expiresIn = new Date().getTime() + +res.expiresIn * 1000

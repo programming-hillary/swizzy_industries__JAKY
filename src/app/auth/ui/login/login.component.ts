@@ -87,8 +87,8 @@ export class LoginComponent {
         )
         .subscribe({
           next: (res) => {
+            this.router.navigate(['/'])
             this.isLoading = false
-            this.router.navigate(['home'])
           },
           error: (errMsg: string) => {
             this._snackBar.open(errMsg, 'Close', {

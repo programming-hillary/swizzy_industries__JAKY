@@ -24,10 +24,4 @@ export class LogoutService {
 
     this.tokenExpirationTimer = null
   }
-
-  handleAutoLogout(expirationTimer: number) {
-    this.tokenExpirationTimer = setTimeout(() => {
-      this.handleLogout()
-    }, expirationTimer)
-  }
 }

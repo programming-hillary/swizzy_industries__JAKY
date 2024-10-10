@@ -25,29 +25,6 @@
         (ngSubmit)="submitForm(register_form)"
         style="position: relative"
       >
-        <mat-form-field class="w-100">
-          <fa-icon
-            matPrefix
-            [icon]="faUser"
-            style="padding-inline-start: 0.5rem"
-          ></fa-icon>
-          <mat-label
-            style="
-              font-size: 12px;
-              padding-inline-start: 0.5rem;
-              padding-inline-start: 0.5rem;
-            "
-            >Username</mat-label
-          >
-          <input
-            matInput
-            type="text"
-            formControlName="userName"
-            [errorStateMatcher]="matcher"
-            placeholder=""
-            style="font-size: 12px; padding-inline-start: 0.5rem"
-          />
-        </mat-form-field>
         <mat-form-field class="w-100" style="padding-block-start: 0.5rem">
           <fa-icon
             matPrefix

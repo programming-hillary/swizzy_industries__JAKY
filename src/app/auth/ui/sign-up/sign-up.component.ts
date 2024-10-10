@@ -63,7 +63,6 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrl: './sign-up.component.scss',
 })
 export class SignUpComponent {
-  faUser = faUser
   faPassword = faUnlockKeyhole
   faMail = faEnvelope
 
@@ -78,12 +77,10 @@ export class SignUpComponent {
   isLoading: boolean = false
 
   register_form: FormGroup<{
-    userName: FormControl<string>
     password: FormControl<string>
     confirmPassowrd: FormControl<string>
     email: FormControl<string>
   }> = this.fb.group({
-    userName: ['', [Validators.required, Validators.minLength(6)]],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
     confirmPassowrd: ['', [Validators.required, Validators.minLength(6)]],
@@ -103,8 +100,8 @@ export class SignUpComponent {
         )
         .subscribe({
           next: (res) => {
+            this.router.navigate(['/'])
             this.isLoading = false
-            this.router.navigate(['home'])
           },
 
           error: (errMsg: string) => {
