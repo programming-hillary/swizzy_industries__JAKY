@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core'
 import {
   FormControl,
   FormGroup,
@@ -8,21 +8,26 @@ import {
   NonNullableFormBuilder,
   ReactiveFormsModule,
   Validators,
-} from '@angular/forms';
-import { MatCardModule } from '@angular/material/card';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatButtonModule} from '@angular/material/button';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+} from '@angular/forms'
+import { MatCardModule } from '@angular/material/card'
+import { MatInputModule } from '@angular/material/input'
+import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatButtonModule } from '@angular/material/button'
+import { MatCheckboxModule } from '@angular/material/checkbox'
 
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faLock, faUser } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { faLock, faUser } from '@fortawesome/free-solid-svg-icons'
 
-import { ErrorStateMatcher } from '@angular/material/core';
-import { Router } from '@angular/router';
+import { ErrorStateMatcher } from '@angular/material/core'
+import { Router } from '@angular/router'
+import { LoginService } from '../../providers/auth/login/login.service'
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar'
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+  isErrorState(
+    control: FormControl | null,
+    form: FormGroupDirective | NgForm | null
+  ): boolean {
     const isSubmitted = form && form.submitted
     return !!(control && control.invalid && (control.dirty || isSubmitted))
   }
@@ -39,45 +44,75 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule,
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-
   faUser = faUser
   faPassword = faLock
 
-  fb: NonNullableFormBuilder = inject(NonNullableFormBuilder);
+  isLoading: boolean = false
+
+  fb: NonNullableFormBuilder = inject(NonNullableFormBuilder)
   router: Router = inject(Router)
 
+  _snackBar: MatSnackBar = inject(MatSnackBar)
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center'
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom'
+  durationInSeconds: number = 3
+
+  logingService: LoginService = inject(LoginService)
+
   login_form: FormGroup<{
-    userName: FormControl<string>;
-    password: FormControl<string>;
-    rememberMe: FormControl<boolean>;
+    email: FormControl<string>
+    password: FormControl<string>
+    rememberMe: FormControl<boolean>
   }> = this.fb.group({
-    userName: ['', [Validators.required]],
+    email: ['', [Validators.required]],
     password: ['', [Validators.required]],
     rememberMe: [true],
-  });
+  })
 
-  matcher = new MyErrorStateMatcher();
+  matcher = new MyErrorStateMatcher()
 
   submitForm(form: any): void {
+    this.isLoading = true
+
     if (this.login_form.valid) {
+      this.logingService
+        .handleEmailPasswordSignIn(
+          this.login_form.value.email!,
+          this.login_form.value.password!
+        )
+        .subscribe({
+          next: (res) => {
+            this.isLoading = false
+          },
+          error: (errMsg: string) => {
+            this._snackBar.open(errMsg, 'Close', {
+              horizontalPosition: this.horizontalPosition,
+              verticalPosition: this.verticalPosition,
+              duration: this.durationInSeconds * 1000
+            })
+
+            this.isLoading = false
+          }
+        })
+
       form.reset()
     } else {
       Object.values(this.login_form.controls).forEach((control) => {
         if (control.invalid) {
-          control.markAsDirty();
-          control.updateValueAndValidity({ onlySelf: true });
+          control.markAsDirty()
+          control.updateValueAndValidity({ onlySelf: true })
         }
-      });
+      })
     }
   }
 
   signUpBtnClicked() {
-   this.router.navigate(['auth','sign-up']);
+    this.router.navigate(['auth', 'sign-up'])
   }
 }

@@ -5,7 +5,26 @@
     style="padding: 2rem 1rem; width: 400px; font-size: 12px"
   >
     <mat-card-content class="signup-form w-100">
-      <form [formGroup]="register_form" (ngSubmit)="submitForm(register_form)">
+      @if(isLoading){
+      <div
+        class="loader-holder"
+        style="
+          align-self: center;
+          place-self: center;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        "
+      >
+        <app-mini-loader></app-mini-loader>
+      </div>
+      } @else {
+      <form
+        [formGroup]="register_form"
+        (ngSubmit)="submitForm(register_form)"
+        style="position: relative"
+      >
         <mat-form-field class="w-100">
           <fa-icon
             matPrefix
@@ -88,7 +107,7 @@
           class="signup-form-button text-uppercase text-light"
           style="flex: 1; margin-bottom: 1rem; border-radius: 0.5rem"
         >
-          Sign Up
+          {{ isLoading ? "Submitting..." : "Sign Up" }}
         </button>
       </form>
       <div class="container">
@@ -106,6 +125,7 @@
           </button>
         </div>
       </div>
+      }
     </mat-card-content>
   </mat-card>
 </div>
