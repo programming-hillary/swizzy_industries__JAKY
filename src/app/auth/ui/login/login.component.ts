@@ -28,8 +28,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     control: FormControl | null,
     form: FormGroupDirective | NgForm | null
   ): boolean {
-    const isSubmitted = form && form.submitted
-    return !!(control && control.invalid && (control.dirty || isSubmitted))
+    return !!(control && control.invalid && (control.dirty))
   }
 }
 
@@ -89,6 +88,7 @@ export class LoginComponent {
         .subscribe({
           next: (res) => {
             this.isLoading = false
+            this.router.navigate(['home'])
           },
           error: (errMsg: string) => {
             this._snackBar.open(errMsg, 'Close', {

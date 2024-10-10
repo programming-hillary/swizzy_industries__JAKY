@@ -16,13 +16,6 @@ export class AuthHeaderComponent implements OnInit {
   urlLocation: Location = inject(Location)
 
   ngOnInit(): void {
-
-
-    this.activatedRoute.url.subscribe((data) => {
-      console.log(this.urlLocation.path());
-
-    });
-
     if (this.urlLocation.path() == '/auth/sign-up') {
       this.isLoginMode = false;
     }

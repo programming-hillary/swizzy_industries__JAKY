@@ -11,6 +11,5 @@ export class SidebarService {
 
   sidebarToggled(event: any) {
     this.sidebarToggle.emit(event)
-    console.log("service toggle drawer")
   }
 }

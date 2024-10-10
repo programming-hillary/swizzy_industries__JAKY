@@ -33,16 +33,16 @@ import {
 
 import { ErrorStateMatcher } from '@angular/material/core'
 import { SignUpService } from '../../providers/auth/sign-up/sign-up.service'
-import { MiniLoaderComponent } from '../../../../shared/components/loading/mini-loader/mini-loader.component'
+
 import { HttpErrorResponse } from '@angular/common/http'
+import { MiniLoaderComponent } from '../../../shared/components/loading/mini-loader/mini-loader.component'
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
     control: FormControl | null,
     form: FormGroupDirective | NgForm | null
   ): boolean {
-    const isSubmitted = form && form.submitted
-    return !!(control && control.invalid && (control.dirty || isSubmitted))
+    return !!(control && control.invalid && (control.dirty))
   }
 }
 @Component({
@@ -104,6 +104,7 @@ export class SignUpComponent {
         .subscribe({
           next: (res) => {
             this.isLoading = false
+            this.router.navigate(['home'])
           },
 
           error: (errMsg: string) => {
@@ -117,9 +118,6 @@ export class SignUpComponent {
         })
 
       form.reset()
-      form.touched = false
-      form.dirty = false
-      form.prestine = false
     } else {
       Object.values(this.register_form.controls).forEach((control) => {
         if (control.invalid) {

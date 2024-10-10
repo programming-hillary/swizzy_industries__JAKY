@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http'
 import { LoginResponse } from '../../../models/auth/LoginResponse'
 import { catchError, tap } from 'rxjs'
 import { ErrorHandlerService } from '../errors/error-handler.service'
-import { UserServiceService } from '../../users/user-service.service'
+import { UserService } from '../../users/user-service.service'
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +11,7 @@ import { UserServiceService } from '../../users/user-service.service'
 export class LoginService {
   http: HttpClient = inject(HttpClient)
   errorsService: ErrorHandlerService = inject(ErrorHandlerService)
-  userService: UserServiceService = inject(UserServiceService)
+  userService: UserService = inject(UserService)
 
   handleEmailPasswordSignIn(email: string, password: string) {
     const formData = {

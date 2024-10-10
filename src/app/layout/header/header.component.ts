@@ -1,46 +1,64 @@
-import { RouterModule } from '@angular/router';
-import { Component, inject, ViewChild } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RouterModule } from '@angular/router'
+import { Component, inject, OnDestroy, OnInit } from '@angular/core'
+import { MatButtonModule } from '@angular/material/button'
+import { MatIconModule } from '@angular/material/icon'
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import {
   faInstagram,
   faYoutube,
   faXTwitter,
   faLinkedinIn,
   faFacebookF,
-} from '@fortawesome/free-brands-svg-icons';
-import { faPhone, faBars, faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { SidebarService } from '../../shared/services/sidebar.service';
+} from '@fortawesome/free-brands-svg-icons'
+import { faPhone, faBars, faEnvelope, faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { SidebarService } from '../../shared/services/sidebar.service'
+import { UserService } from '../../auth/providers/users/user-service.service'
+import { User } from '../../auth/models/users/user'
+import { Subscription } from 'rxjs'
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [
-    FontAwesomeModule,
-    MatButtonModule,
-    MatIconModule,
-    RouterModule
-],
+  imports: [FontAwesomeModule, MatButtonModule, MatIconModule, RouterModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnDestroy {
 
-  sidebarService: SidebarService = inject(SidebarService);
+  faPhone = faPhone
+  faMenu = faBars
+  faUser = faUserCircle
 
-  faPhone = faPhone;
-  faMenu = faBars;
+  faInstagram = faInstagram
+  faEnvelope = faEnvelope
+  faFacebookF = faFacebookF
+  faLinkedinIn = faLinkedinIn
+  faYoutube = faYoutube
+  faXTwitter = faXTwitter
 
-  faInstagram = faInstagram;
-  faEnvelope = faEnvelope;
-  faFacebookF = faFacebookF;
-  faLinkedinIn = faLinkedinIn;
-  faYoutube = faYoutube;
-  faXTwitter = faXTwitter;
+  isLoggedIn!: boolean
+  private userSubscription!: Subscription
+
+  userService: UserService = inject(UserService)
+  sidebarService: SidebarService = inject(SidebarService)
+
+  ngOnInit(): void {
+    this.userSubscription = this.userService.createdUser.subscribe(
+      (user) => {
+        if(user) {
+          this.isLoggedIn = true
+        } else {
+          this.isLoggedIn = false
+        }
+      }
+    )
+  }
 
   onToggleDrawer(event: any) {
-    console.log("header toggle drawer")
-    this.sidebarService.sidebarToggled(event);
+    this.sidebarService.sidebarToggled(event)
+  }
+
+  ngOnDestroy() {
+    this.userSubscription.unsubscribe()
   }
 }

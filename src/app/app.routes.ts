@@ -1,26 +1,23 @@
-import { Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
-import { LayoutComponent } from './layout/layout.component';
-import { LoginComponent } from './pages/auth/ui/login/login.component';
-import { AuthComponent } from './pages/auth/ui/auth.component';
-import { SignUpComponent } from './pages/auth/ui/sign-up/sign-up.component';
-import { ProfileEditComponent } from './pages/auth/ui/profile-edit/profile-edit.component';
+import { Routes } from '@angular/router'
+import { HomeComponent } from './pages/home/home.component'
+import { LayoutComponent } from './layout/layout.component'
+import { AuthComponent } from './auth/ui/auth.component'
+import { LoginComponent } from './auth/ui/login/login.component'
+import { ProfileEditComponent } from './auth/ui/profile-edit/profile-edit.component'
+import { SignUpComponent } from './auth/ui/sign-up/sign-up.component'
+import { homeAuthGuardGuard } from './auth/guards/can-activate-home/home-auth-guard.guard'
 
 export const routes: Routes = [
   {
-    path: 'home',
+    path: '',
     component: LayoutComponent,
+    canActivate: [homeAuthGuardGuard],
     children: [
       {
         path: '',
         component: HomeComponent,
       },
     ],
-  },
-  {
-    path: '',
-    redirectTo: 'auth',
-    pathMatch: 'full'
   },
   {
     path: 'auth',
@@ -45,4 +42,4 @@ export const routes: Routes = [
       },
     ],
   },
-];
+]

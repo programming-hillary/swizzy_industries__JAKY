@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core'
 import { AuthResponse } from '../../../models/auth/AuthResponse'
 import { catchError, tap, throwError } from 'rxjs'
 import { ErrorHandlerService } from '../errors/error-handler.service'
-import { UserServiceService } from '../../users/user-service.service'
+import { UserService } from '../../users/user-service.service'
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +11,7 @@ import { UserServiceService } from '../../users/user-service.service'
 export class SignUpService {
   http: HttpClient = inject(HttpClient)
   errorsService: ErrorHandlerService = inject(ErrorHandlerService)
-  userService: UserServiceService = inject(UserServiceService)
+  userService: UserService = inject(UserService)
 
   handleEmailPasswordSignUp(email: string, password: string) {
     const formData = {
@@ -32,6 +32,4 @@ export class SignUpService {
         tap((res) => this.userService.handleCreateUser(res))
       )
   }
-
-  handleOAuthSignUp() {}
 }

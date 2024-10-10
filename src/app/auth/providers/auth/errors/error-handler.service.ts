@@ -10,7 +10,7 @@ export class ErrorHandlerService {
 
   handleAuthenticationErrors(err: HttpErrorResponse) {
     if (err.error || err.error.error) {
-      this.errorMsg = 'Server communication problem'
+      this.errorMsg = 'Problem encountered while connecting to the server'
       return throwError(() => this.errorMsg)
     }
 
