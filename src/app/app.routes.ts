@@ -39,6 +39,7 @@ export const routes: Routes = [
       {
         path: 'edit-profile',
         component: ProfileEditComponent,
+        // canActivate: [homeAuthGuardGuard]
       },
     ],
   },

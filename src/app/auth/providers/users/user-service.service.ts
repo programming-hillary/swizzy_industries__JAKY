@@ -10,8 +10,6 @@ export class UserService {
 
   createdUser = new BehaviorSubject<User | null>(null)
 
-  autoLogout: AutoLogout = inject(AutoLogout)
-
   handleCreateUser(res: any) {
     const expiresIn = new Date().getTime() + +res.expiresIn * 1000
     const expiresInTimeStamp = new Date(expiresIn)
@@ -19,8 +17,6 @@ export class UserService {
     const user = new User(res.email, res.localId, res.idToken, expiresInTimeStamp)
 
     this.createdUser.next(user)
-
-    this.autoLogout.handleAutoLogout(res._expiresIn)
 
     localStorage.setItem('user', JSON.stringify(user))
   }

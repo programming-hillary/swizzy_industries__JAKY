@@ -5,7 +5,7 @@
   >
     <mat-card-content class="login-form w-100">
       <form [formGroup]="login_form" (ngSubmit)="submitForm(login_form)">
-        <mat-form-field class="w-100">
+        <mat-form-field appearance="outline" class="w-100">
           <fa-icon matPrefix [icon]="faUser" style="padding-inline-start: 0.5rem;"></fa-icon>
           <mat-label style="font-size: 12px; padding-inline-start: 0.5rem;">Email</mat-label>
           <input
@@ -17,7 +17,7 @@
             style="font-size: 12px; padding-inline-start: 0.5rem;"
           />
         </mat-form-field>
-        <mat-form-field class="w-100" style="padding-block-start: 0.5rem;">
+        <mat-form-field appearance="outline" class="w-100" style="padding-block-start: 0.5rem;">
           <fa-icon matPrefix [icon]="faPassword" style="padding-inline-start: 0.5rem;"></fa-icon>
           <mat-label style="font-size: 12px; padding-inline-start: 0.5rem;">Password</mat-label>
           <input

@@ -10,17 +10,20 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './auth-header.component.scss',
 })
 export class AuthHeaderComponent implements OnInit {
-  isLoginMode: boolean = true;
+  isLoginMode!: string
   routeUrl: Router = inject(Router);
   activatedRoute: ActivatedRoute = inject(ActivatedRoute);
   urlLocation: Location = inject(Location)
 
   ngOnInit(): void {
     if (this.urlLocation.path() == '/auth/sign-up') {
-      this.isLoginMode = false;
+      this.isLoginMode = 'sign up';
     }
     if (this.urlLocation.path() == '/auth/sign-in') {
-      this.isLoginMode = true;
+      this.isLoginMode = 'sign in';
+    }
+    if (this.urlLocation.path() == '/auth/edit-profile') {
+      this.isLoginMode = 'edit profile';
     }
   }
 }

@@ -22,15 +22,7 @@ import { ErrorStateMatcher } from '@angular/material/core'
 import { Router } from '@angular/router'
 import { LoginService } from '../../providers/auth/login/login.service'
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar'
-
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(
-    control: FormControl | null,
-    form: FormGroupDirective | NgForm | null
-  ): boolean {
-    return !!(control && control.invalid && (control.dirty))
-  }
-}
+import { MyErrorStateMatcher } from '../sign-up/sign-up.component'
 
 @Component({
   selector: 'app-login',

@@ -23,8 +23,6 @@ export const homeAuthGuardGuard: CanActivateFn = (
       const authenticated = user ? true : false
 
       if (authenticated) {
-        console.log('2');
-
         return true
       } else {
         return router.createUrlTree(['auth'])

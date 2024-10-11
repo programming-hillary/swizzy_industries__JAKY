@@ -4,6 +4,7 @@ import { AuthResponse } from '../../../models/auth/AuthResponse'
 import { catchError, tap, throwError } from 'rxjs'
 import { ErrorHandlerService } from '../errors/error-handler.service'
 import { UserService } from '../../users/user-service.service'
+import { AutoLogout } from '../auto-logout/auto-logout.service'
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +13,7 @@ export class SignUpService {
   http: HttpClient = inject(HttpClient)
   errorsService: ErrorHandlerService = inject(ErrorHandlerService)
   userService: UserService = inject(UserService)
+  autoLogout: AutoLogout = inject(AutoLogout)
 
   handleEmailPasswordSignUp(email: string, password: string) {
     const formData = {

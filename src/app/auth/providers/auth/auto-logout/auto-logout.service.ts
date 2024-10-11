@@ -1,6 +1,5 @@
 import { inject, Injectable } from '@angular/core';
 import { LogoutService } from '../logout/logout.service';
-import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +8,11 @@ export class AutoLogout {
 
   tokenExpirationTimer: any
 
+  logout: LogoutService = inject(LogoutService)
+
   handleAutoLogout(expirationTimer: number) {
     this.tokenExpirationTimer = setTimeout(() => {
-      localStorage.removeItem('user')
+      this.logout.handleLogout()
     }, expirationTimer)
   }
 }
