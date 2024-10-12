@@ -24,7 +24,7 @@ export class LoginService {
 
     return this.http
       .post<LoginResponse>(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyC26hinZ31n4S3-X4Xa9DaHi4frZYkprcg',
+        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyC6oI3m6s6a6D2F9hK37HlFUZVBPaVmLJA',
         formData
       )
       .pipe(

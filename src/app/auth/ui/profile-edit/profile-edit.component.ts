@@ -16,6 +16,8 @@ import { Router } from '@angular/router'
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
+import { GoogleMapsModule } from '@angular/google-maps'
+
 import { faEdit, faLongArrowAltLeft, faLongArrowAltRight, faWarning } from '@fortawesome/free-solid-svg-icons'
 import { EditPersonalDetailsComponent } from "../../../shared/components/edit-personal-details/edit-personal-details.component"
 import { MyErrorStateMatcher } from '../sign-up/sign-up.component'
@@ -33,6 +35,7 @@ import { MyErrorStateMatcher } from '../sign-up/sign-up.component'
     MatSelectModule,
     MatButtonModule,
     FontAwesomeModule,
+    GoogleMapsModule,
     EditPersonalDetailsComponent
 ],
   templateUrl: './profile-edit.component.html',
@@ -43,9 +46,6 @@ export class ProfileEditComponent {
   faLongArrowAltLeft = faLongArrowAltLeft
   faWarning = faWarning
   faEdit = faEdit
-
-  @ViewChild('stepper') stepper: any
-  @ViewChild('personalDetailsNextButton') personalDetailsNextButton: any
 
   matcher = new MyErrorStateMatcher()
 
@@ -70,6 +70,7 @@ export class ProfileEditComponent {
   businessDetails: FormGroup = this._formBuilder.group({
     businessName: ['', [Validators.required]],
     popularName: ['', [Validators.required]],
+    phone: ['', [Validators.required]],
     category: ['', [Validators.required]],
     city: ['', [Validators.required]],
     region: ['', [Validators.required]],
@@ -78,6 +79,24 @@ export class ProfileEditComponent {
     socialMediaLinks: ['', [Validators.required]],
   })
   photosDetails: FormGroup = this._formBuilder.group({  })
+
+
+  center: google.maps.LatLngLiteral = {
+    lat: 0,
+    lng: 0
+  }
+
+  zoom: number = 5
+
+  display: any
+
+  moveMapMarker(event: google.maps.MapMouseEvent|google.maps.IconMouseEvent) {
+    if(event.latLng != null) this.center = (event.latLng.toJSON())
+  }
+
+  maphover(event: google.maps.MapMouseEvent) {
+    if(event.latLng != null) this.display = (event.latLng.toJSON)
+  }
 
   submitProfileEdits() {
 

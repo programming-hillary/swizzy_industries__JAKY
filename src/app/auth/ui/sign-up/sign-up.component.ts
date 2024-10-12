@@ -100,7 +100,7 @@ export class SignUpComponent {
         )
         .subscribe({
           next: (res) => {
-            this.router.navigate(['auth', 'edit-profile'])
+            this.router.navigateByUrl('/auth/edit-profile')
             this.isLoading = false
           },
 

@@ -24,7 +24,7 @@ export class SignUpService {
 
     return this.http
       .post<AuthResponse>(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyC26hinZ31n4S3-X4Xa9DaHi4frZYkprcg',
+        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyC6oI3m6s6a6D2F9hK37HlFUZVBPaVmLJA',
         formData
       )
       .pipe(
