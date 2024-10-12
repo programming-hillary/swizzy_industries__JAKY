@@ -1,5 +1,5 @@
 {
-  "name": "jaky-stores",
+  "name": "jaky-tech",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,26 +7,20 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:jaky-stores": "node dist/jaky-stores/server/server.mjs"
+    "serve:ssr:Jaky_Tech": "node dist/jaky-tech/server/server.mjs"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "^18.2.0",
-    "@angular/cdk": "^18.2.7",
     "@angular/common": "^18.2.0",
     "@angular/compiler": "^18.2.0",
     "@angular/core": "^18.2.0",
     "@angular/forms": "^18.2.0",
-    "@angular/material": "^18.2.7",
     "@angular/platform-browser": "^18.2.0",
     "@angular/platform-browser-dynamic": "^18.2.0",
     "@angular/platform-server": "^18.2.0",
     "@angular/router": "^18.2.0",
-    "@angular/ssr": "^18.2.7",
-    "@fortawesome/angular-fontawesome": "^0.15.0",
-    "@fortawesome/free-brands-svg-icons": "^6.5.2",
-    "@fortawesome/free-regular-svg-icons": "^6.5.2",
-    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@angular/ssr": "^18.2.3",
     "express": "^4.18.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
@@ -45,7 +39,6 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "ng-packagr": "^18.2.0",
     "typescript": "~5.5.2"
   }
 }
