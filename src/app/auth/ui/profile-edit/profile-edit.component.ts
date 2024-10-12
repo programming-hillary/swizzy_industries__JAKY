@@ -79,7 +79,7 @@ export class ProfileEditComponent {
   })
   photosDetails: FormGroup = this._formBuilder.group({  })
 
-  submitPresonalDetails(personaldetailsForm: any) {
+  submitProfileEdits() {
 
     if (this.personalDetails.valid) {
       console.log('valid');

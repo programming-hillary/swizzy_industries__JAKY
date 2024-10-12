@@ -7,7 +7,7 @@
       <button
         mat-raised-button
         (click)="proceedToHome()"
-        class="text-uppercase"
+        class="text-uppercase bg-dark"
       >
         Skip
       </button>
@@ -17,7 +17,7 @@
       [animationDuration]="'500'"
       #stepper
       style="border-radius: 1rem; padding: 1rem; margin-block-end: 4rem"
-      class="shadow"
+      class="shadow bg-dark"
     >
       <mat-step [stepControl]="personalDetails" [editable]="isEditable">
         <ng-template matStepLabel
@@ -229,7 +229,6 @@
             <button
               #personalDetailsNextButton
               mat-flat-button
-              (click)="submitPresonalDetails(personalDetails)"
               matStepperNext
             >
               Next
@@ -329,6 +328,11 @@
                 <mat-label>Category</mat-label>
                 <mat-select formControlName="category" [errorStateMatcher]="matcher">
                     <mat-option>Clear</mat-option>
+                    <mat-option value="Salon">Salon</mat-option>
+                    <mat-option value="BarberShop">Barber Shop</mat-option>
+                    <mat-option value="Boutique">Clear</mat-option>
+                    <mat-option value="Cosmetics Shop">Clear</mat-option>
+                    <mat-option value="MassageAndSpa">Massage And Spa</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>

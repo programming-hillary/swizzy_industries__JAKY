@@ -1,7 +1,6 @@
 <div class="wrapper">
   <mat-card
-    class="bg-light"
-    appearance="outlined"
+    class=" bg-dark shadow"
     style="padding: 2rem 1rem; width: 400px; font-size: 12px"
   >
     <mat-card-content class="signup-form w-100">
@@ -81,7 +80,7 @@
         </mat-form-field>
         <button
           mat-flat-button
-          class="signup-form-button text-uppercase text-light"
+          class="signup-form-button text-uppercase"
           style="flex: 1; margin-bottom: 1rem; border-radius: 0.5rem"
         >
           {{ isLoading ? "Submitting..." : "Sign Up" }}
@@ -89,13 +88,13 @@
       </form>
       <div class="container">
         <div class="row align-items-center justify-content-between">
-          <p class="text-dark col-6" style="margin: auto 0">
+          <p class="col-6" style="margin: auto 0">
             Already have an account?
           </p>
           <button
             (click)="signInBtnClicked()"
             mat-raised-button
-            class="text-dark col-6 text-capitallize"
+            class="col-6 text-capitallize"
             style="flex: 1"
           >
             Sign In
