@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Jaky_Tech": {
+    "jaky-tech": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -29,10 +29,12 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+              "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/css/bootstrap.min.css"
             ],
             "scripts": [],
             "server": "src/main.server.ts",
@@ -69,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "Jaky_Tech:build:production"
+              "buildTarget": "jaky-tech:build:production"
             },
             "development": {
-              "buildTarget": "Jaky_Tech:build:development"
+              "buildTarget": "jaky-tech:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -103,5 +105,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "35c4b11b-c969-4fe9-a4e8-3d911b69edf4"
   }
 }
