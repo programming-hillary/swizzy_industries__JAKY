@@ -1,0 +1,10 @@
+<form [formGroup]="photosDetails">
+  <div class="row">
+
+  </div>
+  <div class="container d-flex justify-content-end gap-2">
+    <button mat-raised-button (click)="photosDetails.reset()">Clear</button>
+    <button mat-raised-button matStepperPrevious>Back</button>
+    <button mat-flat-button matStepperNext>Next</button>
+  </div>
+</form>

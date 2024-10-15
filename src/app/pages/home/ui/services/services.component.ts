@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faInstagram, faFacebook, faLinkedin, faYoutube, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faArrowUp, faArrowRight, faEnvelope, faPhoneAlt, faMapMarkerAlt, faQuoteRight, faDumbbell, faGlassCheers, faSwimmer, faSpa, faUtensils, faHotel, faBed, faBath, faWifi, faUsers, faUsersCog } from '@fortawesome/free-solid-svg-icons';
-import { HomeServiceCardComponent } from "../../../../shared/components/home-service-card/home-service-card.component";
+import { HomeServiceCardComponent } from "../../../../shared/components/cards/home-service-card/home-service-card.component";
 
 @Component({
   selector: 'app-services',

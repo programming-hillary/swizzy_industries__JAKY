@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faInstagram, faFacebook, faLinkedin, faYoutube, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faArrowUp, faArrowRight, faEnvelope, faPhoneAlt, faMapMarkerAlt, faQuoteRight, faDumbbell, faGlassCheers, faSwimmer, faSpa, faUtensils, faHotel, faBed, faBath, faWifi, faUsers, faUsersCog } from '@fortawesome/free-solid-svg-icons';
-import { HomeProvidersCardComponent } from "../../../../shared/components/home-providers-card/home-providers-card.component";
+import { HomeProvidersCardComponent } from "../../../../shared/components/cards/home-providers-card/home-providers-card.component";
 
 @Component({
   selector: 'app-popular-providers',
