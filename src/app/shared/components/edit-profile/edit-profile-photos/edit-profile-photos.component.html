@@ -1,10 +1,80 @@
 <form [formGroup]="photosDetails">
-  <div class="row">
-
+  <div class="row pt-4 pb-4 gap-4 justify-content-evenly">
+    <div
+      class="control-container col-6 align-items-center"
+      [style.width]="imageWidth() + 'px'"
+    >
+      <h6 class="text-uppercase text-center text-white">Personal Photos:</h6>
+      <div class="image-container">
+        <img
+          [src]="imageSource()"
+          [width]="imageWidth()"
+          [height]="imageHeight()"
+          class="mat-elevation-z5"
+          [style.opacity]="uploading() ? 0.5 : 1"
+        />
+        @if(uploading()){
+        <mat-progress-spinner [diameter]="50" mode="indeterminate" />
+        }
+      </div>
+      <div class="row">
+        <div class="text-center">
+          <input
+            #inputField
+            hidden
+            type="file"
+            (change)="personalFileSelected($event)"
+            (click)="inputField.value = ''"
+          />
+          <button
+            mat-raised-button
+            class="bg-dark"
+            (click)="inputField.click()"
+          >
+            Select Photo
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      class="control-container col-6 align-items-center"
+      [style.width]="imageWidth() + 'px'"
+    >
+      <h6 class="text-uppercase text-center text-white">Business Photos:</h6>
+      <div class="image-container">
+        <img
+          [src]="imageSource()"
+          [width]="imageWidth()"
+          [height]="imageHeight()"
+          class="mat-elevation-z5"
+          [style.opacity]="uploading() ? 0.5 : 1"
+        />
+        @if(uploading()){
+        <mat-progress-spinner [diameter]="50" mode="indeterminate" />
+        }
+      </div>
+      <div class="row">
+        <div class="text-center">
+          <input
+            #inputField2
+            hidden
+            type="file"
+            (change)="businessFileSelected($event)"
+            (click)="inputField.value = ''"
+          />
+          <button
+            mat-raised-button
+            class="bg-dark"
+            (click)="inputField2.click()"
+          >
+            Select Photo
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="container d-flex justify-content-end gap-2">
-    <button mat-raised-button (click)="photosDetails.reset()">Clear</button>
+  <div class="container d-flex justify-content-center gap-2">
     <button mat-raised-button matStepperPrevious>Back</button>
-    <button mat-flat-button matStepperNext>Next</button>
+    <button mat-flat-button matStepperNext>Finalize</button>
   </div>
 </form>

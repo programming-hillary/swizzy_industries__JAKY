@@ -22,17 +22,21 @@
         <ng-template matStepLabel
           >Please fill out personal information:</ng-template
         >
-        <app-edit-personal-details></app-edit-personal-details
-      ></mat-step>
+        <app-edit-personal-details />
+      </mat-step>
       <mat-step [stepControl]="businessDetails" [editable]="isEditable">
         <ng-template matStepLabel
           >Please provide your business details:</ng-template
         >
-        <app-edit-business-details></app-edit-business-details>
+        <app-edit-business-details />
       </mat-step>
       <mat-step [stepControl]="photosDetails" [editable]="isEditable">
         <ng-template matStepLabel>Add photos:</ng-template>
-        <app-edit-profile-photos></app-edit-profile-photos>
+        <app-edit-profile-photos
+          [width]="200"
+          [height]="200"
+          [path]="'image.jpg'"
+        />
       </mat-step>
       <mat-step [editable]="isEditable">
         <ng-template matStepLabel>Finish</ng-template>
