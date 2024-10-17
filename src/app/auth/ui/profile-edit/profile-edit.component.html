@@ -30,14 +30,13 @@
         >
         <app-edit-business-details />
       </mat-step>
-      <mat-step [stepControl]="photosDetails" [editable]="isEditable">
-        <ng-template matStepLabel>Add photos:</ng-template>
-        <app-edit-profile-photos
-          [width]="200"
-          [height]="200"
-          [personalImagePath]="'/personal'"
-          [businessImagePath]="'/business'"
-        />
+      <mat-step [stepControl]="personalPhotoDetails" [editable]="isEditable">
+        <ng-template matStepLabel>Add perosnal photos:</ng-template>
+        <app-edit-personal-photos />
+      </mat-step>
+      <mat-step [stepControl]="businessPhotoDetails" [editable]="isEditable">
+        <ng-template matStepLabel>Add business photos:</ng-template>
+        <app-edit-business-photos />
       </mat-step>
       <mat-step [editable]="isEditable">
         <ng-template matStepLabel>Finish</ng-template>

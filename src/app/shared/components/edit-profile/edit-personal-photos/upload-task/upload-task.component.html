@@ -1,0 +1,11 @@
+@if(percentage ) {
+<mat-progress-spinner
+  mode="determinate"
+  [value]="percentage"
+  color="primary"
+></mat-progress-spinner>
+}
+
+@if(snapshot) { @if(downloadUrl) {
+<img [src]="downloadUrl" alt="Uploaded Image" />
+} }
