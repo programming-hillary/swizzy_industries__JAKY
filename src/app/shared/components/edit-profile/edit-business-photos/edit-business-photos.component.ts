@@ -6,7 +6,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatStepperModule } from '@angular/material/stepper'
-import { UploadBusinessTaskComponent } from './upload-task/upload-task.component'
+import { UploadBusinessTaskComponent } from './upload-business-task/upload-business-task.component'
 
 @Component({
   selector: 'app-edit-business-photos',

@@ -6,7 +6,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatStepperModule } from '@angular/material/stepper'
-import { UploadPersonalTaskComponent } from './upload-task/upload-task.component'
+import { UploadPersonalTaskComponent } from './upload-personal-task/upload-personal-task.component'
 
 @Component({
   selector: 'app-edit-personal-photos',

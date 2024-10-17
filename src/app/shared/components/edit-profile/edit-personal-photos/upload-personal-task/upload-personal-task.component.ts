@@ -8,13 +8,13 @@ import { finalize, lastValueFrom, Observable } from 'rxjs'
 
 
 @Component({
-  selector: 'app-upload-task',
+  selector: 'app-personal-upload-task',
   standalone: true,
   imports: [MatProgressSpinner],
-  templateUrl: './upload-task.component.html',
-  styleUrl: './upload-task.component.scss'
+  templateUrl: './upload-personal-task.component.html',
+  styleUrl: './upload-personal-task.component.scss'
 })
-export class UploadBusinessTaskComponent implements OnInit {
+export class UploadPersonalTaskComponent implements OnInit {
   @Input()
   file!: File
 
@@ -32,7 +32,7 @@ export class UploadBusinessTaskComponent implements OnInit {
   }
 
   startUpload() {
-    const path = `business_photos/${Date.now()}_${this.file.name}`
+    const path = `personal_photos/${Date.now()}_${this.file.name}`
     const ref = this.storage.ref(path)
     this.task = this.storage.upload(path, this.file)
     this.percentage = this.task.percentageChanges()
@@ -40,7 +40,7 @@ export class UploadBusinessTaskComponent implements OnInit {
       finalize(async() => {
         this.downloadUrl = await lastValueFrom(ref.getDownloadURL())
 
-        this.db.collection('business_photo_files').add( { downloadUrl: this.downloadUrl, path } )
+        this.db.collection('personal_photo_files').add( { downloadUrl: this.downloadUrl, path } )
       })
     )
   }
