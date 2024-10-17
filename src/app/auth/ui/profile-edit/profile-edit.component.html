@@ -7,7 +7,7 @@
       <button
         mat-raised-button
         (click)="proceedToHome()"
-        class="text-uppercase bg-dark"
+        class="text-uppercase"
       >
         Skip
       </button>
@@ -17,7 +17,7 @@
       [animationDuration]="'500'"
       #stepper
       style="border-radius: 1rem; padding: 1rem; margin-block-end: 4rem"
-      class="shadow bg-dark"
+      class="shadow"
       ><mat-step [stepControl]="personalDetails" [editable]="isEditable">
         <ng-template matStepLabel
           >Please fill out personal information:</ng-template
@@ -35,7 +35,8 @@
         <app-edit-profile-photos
           [width]="200"
           [height]="200"
-          [path]="'image.jpg'"
+          [personalImagePath]="'/personal'"
+          [businessImagePath]="'/business'"
         />
       </mat-step>
       <mat-step [editable]="isEditable">
@@ -45,7 +46,6 @@
         </p>
         <div class="container d-flex justify-content-center gap-2">
           <button mat-raised-button (click)="stepper.reset()">Restart</button>
-          <button mat-raised-button matStepperPrevious>Back</button>
           <button mat-flat-button (click)="proceedToHome()">Finish</button>
         </div>
       </mat-step>

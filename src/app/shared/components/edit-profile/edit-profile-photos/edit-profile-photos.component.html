@@ -7,13 +7,13 @@
       <h6 class="text-uppercase text-center text-white">Personal Photos:</h6>
       <div class="image-container">
         <img
-          [src]="imageSource()"
+          [src]="personalImageSource()"
           [width]="imageWidth()"
           [height]="imageHeight()"
           class="mat-elevation-z5"
-          [style.opacity]="uploading() ? 0.5 : 1"
+          [style.opacity]="personalImagesUploading() ? 0.5 : 1"
         />
-        @if(uploading()){
+        @if(personalImagesUploading()){
         <mat-progress-spinner [diameter]="50" mode="indeterminate" />
         }
       </div>
@@ -25,13 +25,10 @@
             type="file"
             (change)="personalFileSelected($event)"
             (click)="inputField.value = ''"
+            multiple
           />
-          <button
-            mat-raised-button
-            class="bg-dark"
-            (click)="inputField.click()"
-          >
-            Select Photo
+          <button mat-raised-button (click)="inputField.click()">
+            Select Photos
           </button>
         </div>
       </div>
@@ -43,13 +40,13 @@
       <h6 class="text-uppercase text-center text-white">Business Photos:</h6>
       <div class="image-container">
         <img
-          [src]="imageSource()"
+          [src]="businessImageSource()"
           [width]="imageWidth()"
           [height]="imageHeight()"
           class="mat-elevation-z5"
-          [style.opacity]="uploading() ? 0.5 : 1"
+          [style.opacity]="businessImagesUploading() ? 0.5 : 1"
         />
-        @if(uploading()){
+        @if(businessImagesUploading()){
         <mat-progress-spinner [diameter]="50" mode="indeterminate" />
         }
       </div>
@@ -61,20 +58,23 @@
             type="file"
             (change)="businessFileSelected($event)"
             (click)="inputField.value = ''"
+            multiple
           />
-          <button
-            mat-raised-button
-            class="bg-dark"
-            (click)="inputField2.click()"
-          >
-            Select Photo
+          <button mat-raised-button (click)="inputField2.click()">
+            Select Photos
           </button>
         </div>
       </div>
     </div>
   </div>
   <div class="container d-flex justify-content-center gap-2">
-    <button mat-raised-button matStepperPrevious>Back</button>
-    <button mat-flat-button matStepperNext>Finalize</button>
+    <button
+      mat-flat-button
+      [disabled]="!photosDetails.valid"
+      matStepperNext
+      (click)="submitPhotoDetails()"
+    >
+      Finalize
+    </button>
   </div>
 </form>

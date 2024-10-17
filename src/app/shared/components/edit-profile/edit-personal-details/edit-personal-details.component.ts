@@ -47,4 +47,8 @@ export class EditPersonalDetailsComponent {
     job: ['', [Validators.required]],
     bio: ['', [Validators.required]],
   })
+
+  submitPersonalDetails() {
+    console.log(this.personalDetails)
+  }
 }

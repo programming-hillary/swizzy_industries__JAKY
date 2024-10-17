@@ -183,8 +183,16 @@
     </mat-form-field>
   </div>
   <div class="container d-flex justify-content-end gap-2">
-    <button type="button" mat-raised-button (click)="personalDetails.reset()">Clear</button>
-    <button type="button" #personalDetailsNextButton mat-flat-button matStepperNext>
+    <button type="button" mat-raised-button (click)="personalDetails.reset()">
+      Clear
+    </button>
+    <button
+      type="button"
+      [disabled]="!personalDetails.valid"
+      mat-flat-button
+      matStepperNext
+      (click)="submitPersonalDetails()"
+    >
       Next
     </button>
   </div>

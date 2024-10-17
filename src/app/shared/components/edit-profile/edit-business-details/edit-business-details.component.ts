@@ -1,4 +1,10 @@
-import { Component, ElementRef, inject, ViewChild } from '@angular/core'
+import {
+  Component,
+  ElementRef,
+  inject,
+  OnInit,
+  ViewChild,
+} from '@angular/core'
 import {
   FormArray,
   FormBuilder,
@@ -16,10 +22,23 @@ import { MatStepperModule } from '@angular/material/stepper'
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
-import { GoogleMapsModule } from '@angular/google-maps'
+import {
+  GoogleMap,
+  GoogleMapsModule,
+  MapAdvancedMarker,
+} from '@angular/google-maps'
 
 import { MyErrorStateMatcher } from '../../../../auth/ui/sign-up/sign-up.component'
-import { faFacebookF, faInstagram, faSquareXTwitter, faLinkedinIn, faSnapchat, faReddit, faWhatsapp, faIntercom } from '@fortawesome/free-brands-svg-icons'
+import {
+  faFacebookF,
+  faInstagram,
+  faSquareXTwitter,
+  faLinkedinIn,
+  faSnapchat,
+  faReddit,
+  faWhatsapp,
+  faIntercom,
+} from '@fortawesome/free-brands-svg-icons'
 import { faAdd, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import { CommonModule } from '@angular/common'
 
@@ -37,14 +56,24 @@ import { CommonModule } from '@angular/common'
     MatButtonModule,
     MatStepperModule,
     FontAwesomeModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    MapAdvancedMarker,
   ],
   templateUrl: './edit-business-details.component.html',
-  styleUrl: './edit-business-details.component.scss'
+  styleUrl: './edit-business-details.component.scss',
 })
-export class EditBusinessDetailsComponent {
+export class EditBusinessDetailsComponent implements OnInit {
+  ngOnInit() {
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.options.center = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      }
+    })
+  }
 
-  @ViewChild('addSocialLinkBtn') addSocialLinkBtn!: ElementRef<HTMLButtonElement>
+  @ViewChild('addSocialLinkBtn')
+  addSocialLinkBtn!: ElementRef<HTMLButtonElement>
 
   faAdd = faAdd
   faDelete = faTrashAlt
@@ -60,9 +89,6 @@ export class EditBusinessDetailsComponent {
 
   matcher = new MyErrorStateMatcher()
 
-  isEditable = true
-  stepsCompleted: [] = []
-
   private _formBuilder: FormBuilder = inject(FormBuilder)
 
   businessDetails: FormGroup = this._formBuilder.group({
@@ -70,18 +96,70 @@ export class EditBusinessDetailsComponent {
     popularName: ['', [Validators.required]],
     phone: ['', [Validators.required]],
     category: ['', [Validators.required]],
-    location: ['', [Validators.required]],
-    socialMediaLinks: this._formBuilder.array([])
+    location: this._formBuilder.array([]),
+    socialMediaArray: this._formBuilder.array([]),
   })
 
+  @ViewChild(GoogleMap, { static: false })
+  map!: GoogleMap
+
+  options: google.maps.MapOptions = {
+    disableDoubleClickZoom: true,
+    mapTypeId: 'hybrid',
+    mapId: 'MAP_ID',
+    zoom: 4,
+    center: { lat: -1.1612, lng: 36.4836 },
+  }
+
+  markers = [
+    {
+      position: { lat: 20, lng: 40 },
+    },
+  ]
+
+  addMarker(event: google.maps.MapMouseEvent) {
+    const location = {
+      position: {
+        lat: event.latLng!.lat(),
+        lng: event.latLng!.lng(),
+      }
+    }
+
+    console.log(location)
+
+    this.addLocation(location)
+  }
+
+  locationArray(): FormArray {
+    return this.businessDetails.get('location') as FormArray
+  }
+
+  addLocation(mapLocation: { position: { lat: number; lng: number } }) {
+    this.locationArray().clear()
+
+    const latLng = this._formBuilder.group({
+      latitude: mapLocation.position.lat,
+      longitude: mapLocation.position.lng,
+    })
+
+    this.markers[0].position.lat = mapLocation.position.lat
+    this.markers[0].position.lng = mapLocation.position.lng
+
+    this.locationArray().clear()
+
+    this.locationArray().push(latLng)
+
+    console.log(this.markers)
+  }
+
   socialMediaLinksArray(): FormArray {
-    return this.businessDetails.get('socialMediaLinks') as FormArray
+    return this.businessDetails.get('socialMediaArray') as FormArray
   }
 
   addSocialLink() {
     const link = this._formBuilder.group({
-      linkType: [],
-      socialMediaLink: []
+      linkType: ['', [Validators.required]],
+      socialMediaLink: ['', [Validators.required]],
     })
 
     this.socialMediaLinksArray().push(link)
@@ -89,5 +167,9 @@ export class EditBusinessDetailsComponent {
 
   removeSocialLink(index: number) {
     this.socialMediaLinksArray().removeAt(index)
+  }
+
+  submitBusinessDetails() {
+    console.log(this.businessDetails)
   }
 }

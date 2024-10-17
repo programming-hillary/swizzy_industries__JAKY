@@ -27,5 +27,7 @@ export class ProfileEditComponent {
   businessDetails!: AbstractControl<any, any>
   photosDetails!: AbstractControl<any, any>
 
-  proceedToHome() {}
+  proceedToHome() {
+    console.log('Going Home')
+  }
 }

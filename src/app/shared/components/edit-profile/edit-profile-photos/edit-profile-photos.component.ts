@@ -12,7 +12,6 @@ import {
 import { CommonModule } from '@angular/common'
 import { MatDialog, MatDialogModule } from '@angular/material/dialog'
 import { MatButtonModule } from '@angular/material/button'
-import { filter } from 'rxjs/operators'
 import {
   Storage,
   getDownloadURL,
@@ -25,13 +24,11 @@ import {
   ReactiveFormsModule,
   FormBuilder,
   FormGroup,
+  Validators,
+  FormArray,
 } from '@angular/forms'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatStepperModule } from '@angular/material/stepper'
-import {
-  CropperDialogResult,
-  UploadDialogComponent,
-} from './upload-dialog/upload-dialog.component'
 
 @Component({
   selector: 'app-edit-profile-photos',
@@ -52,7 +49,10 @@ import {
 export class EditProfilePhotosComponent {
   private _formBuilder: FormBuilder = inject(FormBuilder)
 
-  photosDetails: FormGroup = this._formBuilder.group({})
+  photosDetails: FormGroup = this._formBuilder.group({
+    personalPhotos: this._formBuilder.array([]),
+    businessPhotos: this._formBuilder.array([]),
+  })
 
   imageWidth = signal(0)
   @Input({ required: true }) set width(val: number) {
@@ -64,64 +64,55 @@ export class EditProfilePhotosComponent {
     this.imageHeight.set(val)
   }
 
-  imagePath = signal('')
-  @Input({ required: true }) set path(val: string) {
-    this.imagePath.set(val)
+  personalImages = signal('')
+  @Input({ required: true }) set personalImagePath(val: string) {
+    this.personalImages.set(val)
+  }
+
+  businessImages = signal('')
+  @Input({ required: true }) set businessImagePath(val: string) {
+    this.personalImages.set(val)
   }
 
   placeholder = computed(
-    () => `https://placehold.co/${this.imageWidth()}X${this.imageHeight()}`
+    () => `https://img.freepik.com/free-vector/image-upload-concept-illustration_23-2148281796.jpg?t=st=1729078525~exp=1729082125~hmac=4bffcf14c27bbcf4926a639dd226ff768c142f243d10c3a99031798fd6168550/${this.imageWidth()}X${this.imageHeight()}`
   )
 
-  croppedImageURL = signal<string | undefined>(undefined)
+  personalImageURL = signal<string | undefined>(undefined)
+  businessImageURL = signal<string | undefined>(undefined)
 
-  imageSource = computed(() => {
-    return this.croppedImageURL() ?? this.placeholder()
+  personalImageSource = computed(() => {
+    return this.personalImageURL() ?? this.placeholder()
   })
 
-  uploading = signal(false)
+  businessImageSource = computed(() => {
+    return this.businessImageURL() ?? this.placeholder()
+  })
+
+  personalImagesUploading = signal(false)
+  businessImagesUploading = signal(false)
 
   dialog = inject(MatDialog)
 
   personalFileSelected(event: any) {
-    const file = event.target?.files[0]
-    if (file) {
-      const dialogRef = this.dialog.open(UploadDialogComponent, {
-        data: {
-          image: file,
-          width: this.imageWidth(),
-          height: this.imageHeight(),
-        },
-        width: '300px',
-      })
+    let files: [] = event.target.file
 
-      dialogRef
-        .afterClosed()
-        .pipe(filter((result) => !!result))
-        .subscribe((result: CropperDialogResult) => {
-          this.uploadPersonalImages(result.blob)
-        })
+    if (event.target.file){
+      for(let i = 0; i < files.length; i++) {
+        const file = event.target.files[i]
+        this.uploadPersonalImages(file)
+      }
     }
   }
 
   businessFileSelected(event: any) {
-    const file = event.target?.files[0]
-    if (file) {
-      const dialogRef = this.dialog.open(UploadDialogComponent, {
-        data: {
-          image: file,
-          width: this.imageWidth(),
-          height: this.imageHeight(),
-        },
-        width: '300px',
-      })
+    let files: [] = event.target.file
 
-      dialogRef
-        .afterClosed()
-        .pipe(filter((result) => !!result))
-        .subscribe((result: CropperDialogResult) => {
-          this.uploadBusinessImages(result.blob)
-        })
+    if (event.target.file){
+      for(let i = 0; i < files.length; i++) {
+        const file = event.target.files[i]
+        this.uploadBusinessImages(file)
+      }
     }
   }
 
@@ -129,30 +120,64 @@ export class EditProfilePhotosComponent {
 
   constructor() {
     effect(() => {
-      if (this.croppedImageURL()) {
-        this.imageReady.emit(this.croppedImageURL())
+      if (this.personalImageURL()) {
+        this.imageReady.emit(this.personalImageURL())
       }
-    })
+    });
+
+    effect(() => {
+      if (this.businessImageURL()) {
+        this.imageReady.emit(this.businessImageURL())
+      }
+    });
   }
 
   storage = inject(Storage)
   zone = inject(NgZone)
 
   async uploadPersonalImages(blob: Blob) {
-    this.uploading.set(true)
-    const storageRef = ref(this.storage, this.imagePath())
+    this.personalImagesUploading.set(true)
+    const storageRef = ref(this.storage, this.personalImages())
     const uploadTask = await uploadBytes(storageRef, blob)
     const downloadUrl = await getDownloadURL(uploadTask.ref)
-    this.croppedImageURL.set(downloadUrl)
-    this.uploading.set(false)
+    this.personalImageURL.set(downloadUrl)
+    this.personalImagesUploading.set(false)
   }
 
   async uploadBusinessImages(blob: Blob) {
-    this.uploading.set(true)
-    const storageRef = ref(this.storage, this.imagePath())
+    this.businessImagesUploading.set(true)
+    const storageRef = ref(this.storage, this.businessImages())
     const uploadTask = await uploadBytes(storageRef, blob)
     const downloadUrl = await getDownloadURL(uploadTask.ref)
-    this.croppedImageURL.set(downloadUrl)
-    this.uploading.set(false)
+    this.businessImageURL.set(downloadUrl)
+    this.businessImagesUploading.set(false)
+  }
+
+  personalPhotoArray(): FormArray {
+    return this.photosDetails.get('personalPhotos') as FormArray
+  }
+
+  addPersonalPhoto() {
+    const personalPhoto = this._formBuilder.group({
+      name: this.businessImageURL
+    })
+
+    this.personalPhotoArray().push(personalPhoto)
+  }
+
+  businessPhotoArray(): FormArray {
+    return this.photosDetails.get('businessPhotos') as FormArray
+  }
+
+  addBusinessPhoto() {
+    const businessPhoto = this._formBuilder.group({
+      name: this.businessImageURL
+    })
+
+    this.businessPhotoArray().push(businessPhoto)
+  }
+
+  submitPhotoDetails() {
+    console.log(this.photosDetails)
   }
 }

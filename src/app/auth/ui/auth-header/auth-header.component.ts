@@ -2,10 +2,12 @@ import { Location } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { MatToolbarModule } from '@angular/material/toolbar'
+
 @Component({
   selector: 'app-auth-header',
   standalone: true,
-  imports: [],
+  imports: [MatToolbarModule],
   templateUrl: './auth-header.component.html',
   styleUrl: './auth-header.component.scss',
 })

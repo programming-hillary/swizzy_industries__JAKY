@@ -25,16 +25,12 @@ import {
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import {
   faEnvelope,
-  faEnvelopeOpen,
-  faLock,
   faUnlockKeyhole,
-  faUser,
 } from '@fortawesome/free-solid-svg-icons'
 
 import { ErrorStateMatcher } from '@angular/material/core'
 import { SignUpService } from '../../providers/auth/sign-up/sign-up.service'
 
-import { HttpErrorResponse } from '@angular/common/http'
 import { MiniLoaderComponent } from '../../../shared/components/loading/mini-loader/mini-loader.component'
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {

@@ -1,41 +1,41 @@
 <div class="wrapper">
   <mat-card
-    class=" bg-dark shadow"
-    style="padding: 2rem 1rem; width: 400px; font-size: 12px; padding-inline-start: 0.5rem;"
+    class="shadow"
+    style="padding: 2rem 1rem; width: 400px; padding-inline-start: 0.5rem;"
   >
     <mat-card-content class="login-form w-100">
       <form [formGroup]="login_form" (ngSubmit)="submitForm(login_form)">
         <mat-form-field appearance="outline" class="w-100">
           <fa-icon matPrefix [icon]="faUser" style="padding-inline-start: 0.5rem;"></fa-icon>
-          <mat-label style="font-size: 12px; padding-inline-start: 0.5rem;">Email</mat-label>
+          <mat-label style="padding-inline-start: 0.5rem;">Email</mat-label>
           <input
             matInput
             type="text"
             formControlName="email"
             [errorStateMatcher]="matcher"
             placeholder=""
-            style="font-size: 12px; padding-inline-start: 0.5rem;"
+            style="padding-inline-start: 0.5rem;"
           />
         </mat-form-field>
         <mat-form-field appearance="outline" class="w-100" style="padding-block-start: 0.5rem;">
           <fa-icon matPrefix [icon]="faPassword" style="padding-inline-start: 0.5rem;"></fa-icon>
-          <mat-label style="font-size: 12px; padding-inline-start: 0.5rem;">Password</mat-label>
+          <mat-label style="padding-inline-start: 0.5rem;">Password</mat-label>
           <input
             matInput
             type="password"
             formControlName="password"
             [errorStateMatcher]="matcher"
             placeholder=""
-            style="font-size: 12px; padding-inline-start: 0.5rem;"
+            style="padding-inline-start: 0.5rem;"
           />
         </mat-form-field>
         <div class="container-fluid">
           <div class="row align-items-center justify-content-between">
             <div class="col-6 px-0">
-              <mat-checkbox style="font-size: 12px; padding-inline-start: 0.5rem;">Remember me</mat-checkbox>
+              <mat-checkbox style="padding-inline-start: 0.5rem;"><span style="color: #2a58bb">Remember me</span></mat-checkbox>
             </div>
             <div class="col-6 text-end px-0">
-              <a>Forgot password</a>
+              <a style="color: #2a58bb">Forgot password</a>
             </div>
           </div>
         </div>
