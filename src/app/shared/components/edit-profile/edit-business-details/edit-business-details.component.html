@@ -128,19 +128,19 @@
                 style="width: fit-content; display: flex"
                 >Your Cordinates are</span
               >&nbsp;:
-              <div class="col-6 gap-4">
-                <div>{{ latitude }}&deg;{{ northiness }},</div>
-                <div>{{ longitude }}&deg;{{ eastiness }}</div>
+              <div class="col-6 d-flex flex-column gap-4" style="padding-inline-start: 1rem;">
+                <div>{{ latitude().toFixed(2) }} &deg; {{ northiness() }},</div>
+                <div>{{ longitude().toFixed(2) }} &deg; {{ eastiness() }}</div>
               </div>
             </div>
-            <div class="d-flex">
+            <!-- <div class="d-flex gap-4">
               <span
                 class="text-uppercase col-6"
                 style="width: fit-content; display: flex"
                 >Location</span
               >&nbsp;:
               <div class="col-6 gap-4"></div>
-            </div>
+            </div> -->
           </div>
         }
         </div>

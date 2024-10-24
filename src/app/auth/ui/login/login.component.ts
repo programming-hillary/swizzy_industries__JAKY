@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatButtonModule } from '@angular/material/button'
 import { MatCheckboxModule } from '@angular/material/checkbox'
+import { MatDividerModule } from '@angular/material/divider'
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { faLock, faUser } from '@fortawesome/free-solid-svg-icons'
@@ -21,6 +22,7 @@ import { LoginService } from '../../providers/auth/login/login.service'
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar'
 import { MyErrorStateMatcher } from '../sign-up/sign-up.component'
 import { MiniLoaderComponent } from "../../../shared/components/loading/mini-loader/mini-loader.component";
+import { OAuthComponent } from "../../../shared/components/auth/o-auth/o-auth.component";
 
 @Component({
   selector: 'app-login',
@@ -33,8 +35,10 @@ import { MiniLoaderComponent } from "../../../shared/components/loading/mini-loa
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule,
+    MatDividerModule,
     FontAwesomeModule,
-    MiniLoaderComponent
+    MiniLoaderComponent,
+    OAuthComponent
 ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',

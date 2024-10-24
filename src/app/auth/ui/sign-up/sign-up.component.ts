@@ -15,6 +15,7 @@ import { MatInputModule } from '@angular/material/input'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatButtonModule } from '@angular/material/button'
 import { MatCheckboxModule } from '@angular/material/checkbox'
+import { MatDividerModule } from '@angular/material/divider'
 
 import {
   MatSnackBar,
@@ -32,6 +33,7 @@ import { ErrorStateMatcher } from '@angular/material/core'
 import { SignUpService } from '../../providers/auth/sign-up/sign-up.service'
 
 import { MiniLoaderComponent } from '../../../shared/components/loading/mini-loader/mini-loader.component'
+import { OAuthComponent } from "../../../shared/components/auth/o-auth/o-auth.component";
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -52,9 +54,11 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule,
+    MatDividerModule,
     FontAwesomeModule,
     MiniLoaderComponent,
-  ],
+    OAuthComponent
+],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.scss',
 })

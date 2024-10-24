@@ -1,21 +1,21 @@
 <div class="wrapper">
   <mat-card class="shadow" style="padding: 2rem 1rem; width: 400px">
-    <mat-card-content class="signup-form w-100">
-      @if(isLoading){
-      <div
-        class="loader-holder"
-        style="
-          align-self: center;
-          place-self: center;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-        "
-      >
-        <app-mini-loader></app-mini-loader>
-      </div>
-      } @else {
+    @if(isLoading){
+    <div
+      class="loader-holder"
+      style="
+        align-self: center;
+        place-self: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      "
+    >
+      <app-mini-loader></app-mini-loader>
+    </div>
+    } @else {
+    <mat-card-content class="signup-form w-100 mb-4">
       <form
         [formGroup]="register_form"
         (ngSubmit)="submitForm(register_form)"
@@ -88,12 +88,14 @@
           class="signup-form-button text-uppercase"
           style="flex: 1; margin-bottom: 1rem; border-radius: 0.5rem"
         >
-          {{ isLoading ? "Submitting..." : "Sign Up" }}
+          Sign Up
         </button>
       </form>
       <div class="container">
         <div class="row align-items-center justify-content-between">
-          <p class="col-6" style="margin: auto 0">Already have an account?</p>
+          <p class="col-6" style="margin: auto 0; font-size: 0.9rem">
+            Already have an account?
+          </p>
           <button
             (click)="signInBtnClicked()"
             mat-raised-button
@@ -104,7 +106,9 @@
           </button>
         </div>
       </div>
-      }
     </mat-card-content>
+    <mat-divider></mat-divider>
+    <app-o-auth />
+    }
   </mat-card>
 </div>
