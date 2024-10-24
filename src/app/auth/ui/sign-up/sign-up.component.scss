@@ -1,0 +1,27 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+  .signup-form {
+    .signup-form-margin {
+      margin-bottom: 2rem;
+    }
+
+    .signup-form-button {
+      width: 100%;
+    }
+
+    .signup-form-forgot {
+      align-self: flex-end;
+    }
+  }
+}

@@ -1,0 +1,35 @@
+<div class="wrapper">
+  <mat-card
+    class="shadow"
+    style="padding: 2rem 1rem; width: 400px; padding-inline-start: 0.5rem"
+  >
+    <mat-card-content class="verify-email w-100">
+      <div class="container">
+        <div class="row pb-2">
+          <h3 class="text-muted">Email sent</h3>
+          <p>
+            A verification email has been sent to the email you have provided. Click on the link in the email to proceed.
+          </p>
+        </div>
+        <div class="row align-items-center justify-content-between gap-4">
+          <button
+            (click)="signUpBtnClicked()"
+            mat-raised-button
+            class="col-6"
+            style="flex: 1"
+          >
+            Register
+          </button>
+          <button
+            (click)="signInBtnClicked()"
+            mat-flat-button
+            class="col-6"
+            style="flex: 1"
+          >
+            Login
+          </button>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

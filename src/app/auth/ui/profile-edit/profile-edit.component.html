@@ -1,0 +1,70 @@
+<div
+  class="w-100 d-flex align-items-center flex-column"
+  style="padding-block: 2rem"
+>
+  <div class="stepper-width">
+    <div class="d-flex justify-content-end mb-4 container">
+      <button
+        mat-raised-button
+        (click)="proceedToHome()"
+        class="text-uppercase"
+      >
+        Skip
+      </button>
+    </div>
+    <mat-vertical-stepper
+      [linear]="false"
+      [animationDuration]="'500'"
+      #stepper
+      style="border-radius: 1rem; padding: 1rem; margin-block-end: 4rem"
+      class="shadow"
+      >
+      @if(isLoading){
+        <div
+          class="loader-holder"
+          style="
+            align-self: center;
+            place-self: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          "
+        >
+          <app-mini-loader></app-mini-loader>
+        </div>
+        } @else {
+      <mat-step [stepControl]="personalDetails" [editable]="isEditable">
+        <ng-template matStepLabel
+          >Please fill out personal information:</ng-template
+        >
+        <app-edit-personal-details />
+      </mat-step>
+      <mat-step [stepControl]="businessDetails" [editable]="isEditable">
+        <ng-template matStepLabel
+          >Please provide your business details:</ng-template
+        >
+        <app-edit-business-details />
+      </mat-step>
+      <mat-step [stepControl]="personalPhotoDetails" [editable]="isEditable">
+        <ng-template matStepLabel>Add personal photos:</ng-template>
+        <app-edit-personal-photos />
+      </mat-step>
+      <mat-step [stepControl]="businessPhotoDetails" [editable]="isEditable">
+        <ng-template matStepLabel>Add business photos:</ng-template>
+        <app-edit-business-photos />
+      </mat-step>
+      <mat-step [editable]="isEditable">
+        <ng-template matStepLabel>Finish</ng-template>
+        <p class="text-center" style="margin-block: 3rem">
+          You are now done setting up your account
+        </p>
+        <div class="container d-flex justify-content-center gap-2">
+          <button mat-raised-button (click)="stepper.reset()">Restart</button>
+          <button mat-flat-button (click)="proceedToHome()">Finish</button>
+        </div>
+      </mat-step>
+    }
+    </mat-vertical-stepper>
+  </div>
+</div>

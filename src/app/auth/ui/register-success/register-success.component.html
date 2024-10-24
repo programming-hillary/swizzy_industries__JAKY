@@ -1,0 +1,41 @@
+<div class="wrapper">
+  <mat-card
+    class="shadow"
+    style="padding: 2rem 1rem; width: 400px; padding-inline-start: 0.5rem"
+  >
+    <mat-card-content class="verify-email w-100">
+      <div class="container">
+        <div class="row pb-2">
+          <h4 class="text-muted pb-4">
+            <fa-icon
+              [icon]="faCircleCheck"
+              style="color: rgb(43, 201, 43); padding-inline-end: .5rem;"
+            ></fa-icon
+            >Registration successful
+          </h4>
+          <p>
+
+          </p>
+        </div>
+        <div class="row align-items-center justify-content-between gap-4">
+          <button
+            (click)="profileBtnClicked()"
+            mat-raised-button
+            class="col-6"
+            style="flex: 1"
+          >
+            Create Profile
+          </button>
+          <button
+            (click)="homeBtnClicked()"
+            mat-flat-button
+            class="col-6"
+            style="flex: 1"
+          >
+            Homepage
+          </button>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

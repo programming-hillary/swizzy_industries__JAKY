@@ -1,0 +1,21 @@
+.auth-wrapper {
+  position: absolute;
+  inset: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  z-index: -1;
+}
+
+.wrapper {
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.content-area {
+  margin: auto auto;
+}

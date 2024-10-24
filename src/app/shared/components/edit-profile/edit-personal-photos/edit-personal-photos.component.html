@@ -1,0 +1,76 @@
+<div class="row" style="width: 75%; margin: 0 auto">
+  <div
+    class="container d-flex flex-column align-items-center justify-content-center"
+  >
+    <div
+      class="dropzone"
+      appDropzone
+      (hovered)="toggleHoverPersonal($event)"
+      (dropped)="displayPhotosPersonal($event)"
+      [class.hovering]="isHoveringPersonal"
+      color="secondary"
+    >
+      <fa-icon [icon]="faUpload"></fa-icon>
+      <p class="text-uppercase" style="font-style: itallic">
+        Drag & drop to upload files
+      </p>
+      <p style="font-weight: 700; font-size: 1.5rem">OR</p>
+      <label for="fileInputPersonal" class="shadow" color="tertiary"
+        ><fa-icon [icon]="faImages" style="font-size: 2rem"></fa-icon>Select
+        Files</label
+      >
+      <input
+        id="fileInputPersonal"
+        type="file"
+        multiple
+        (change)="displayPhotosFromInputPersonal($event)"
+      />
+    </div>
+  </div>
+</div>
+
+<swiper-container
+  loop="false"
+  slides-per-view="auto"
+  speed="700"
+  navigation="true"
+  pagination="true"
+  pagination-type="fraction"
+  grab-cursor="true"
+  effect="coverflow"
+  centered-slides="true"
+  coverflow-effect-rotate="50"
+  coverflow-effect-stretch="0"
+  coverflow-effect-depth="100"
+  coverflow-effect-modifier="1"
+  coverflow-effect-slide-shadows="true"
+  class="mySwiper"
+>
+  @for(fileSrc of outputFilePersonal; track fileSrc) {
+  <swiper-slide class="mySlider">
+    <img
+      [src]="fileSrc"
+      alt="Uploaded Image"
+      class="carousel-img"
+    />
+    @if(isInUploadStatePersonal) {
+    <app-personal-upload-task [file]="fileSrc" />
+    }
+  </swiper-slide>
+  }
+</swiper-container>
+
+<div class="container d-flex justify-content-center gap-2">
+  <button type="button" mat-raised-button (click)="clearPhotosPersonal()">
+    Clear
+  </button>
+  <button
+    type="button"
+    [disabled]="filesPersonal.length == 0"
+    mat-flat-button
+    matStepperNext
+    (click)="submitPhotosPersonal()"
+  >
+    Next
+  </button>
+</div>

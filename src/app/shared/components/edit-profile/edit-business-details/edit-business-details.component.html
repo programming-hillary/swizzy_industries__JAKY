@@ -1,0 +1,283 @@
+<form [formGroup]="businessDetails" class="pt-4">
+  <div class="row">
+    <div class="col-6">
+      <mat-form-field appearance="outline" class="col-12">
+        <mat-label>Business name</mat-label>
+        <input
+          [errorStateMatcher]="matcher"
+          matInput
+          formControlName="businessName"
+          class="col-12"
+        />
+        @if(businessDetails.controls['businessName'].hasError('required')) {
+        <mat-error> First name is <strong>required</strong> </mat-error>
+        }
+      </mat-form-field>
+    </div>
+    <div class="col-6">
+      <mat-form-field appearance="outline" class="col-12">
+        <mat-label>Popular Name</mat-label>
+        <input
+          [errorStateMatcher]="matcher"
+          matInput
+          formControlName="popularName"
+          class="col-12"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <mat-form-field appearance="outline" class="col-12">
+        <mat-label>Category</mat-label>
+        <mat-select formControlName="category" [errorStateMatcher]="matcher">
+          <mat-option>Clear</mat-option>
+          <mat-option value="Salon">Salon</mat-option>
+          <mat-option value="BarberShop">Barber Shop</mat-option>
+          <mat-option value="Boutique">Clear</mat-option>
+          <mat-option value="Cosmetics Shop">Clear</mat-option>
+          <mat-option value="MassageAndSpa">Massage And Spa</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <mat-form-field appearance="outline" class="col-12">
+        <mat-label>Telephone</mat-label>
+        <span
+          matTextPrefix
+          class="text-center"
+          style="padding-inline-end: 1rem; align-self: center"
+          >+254</span
+        >
+        <input
+          [errorStateMatcher]="matcher"
+          matInput
+          type="tel"
+          formControlName="phone"
+          class="col-12"
+        />
+        @if(businessDetails.controls['phone'].hasError('required')) {
+        <mat-error> Phone Number is <strong>required</strong> </mat-error>
+        }
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <fieldset
+        class="mb-3"
+        style="
+          display: block;
+          margin-inline-start: 2px;
+          margin-inline-end: 2px;
+          padding-block-start: 0.35em;
+          padding-inline: 1.5rem;
+          padding-block-end: 1.25em;
+          min-inline-size: min-content;
+          border-width: 2px;
+          border-style: groove;
+          border-color: rgb(146, 146, 146);
+          border-image: initial;
+          border-radius: 1rem;
+        "
+      >
+        <legend
+          style="
+            display: block;
+            padding-inline: 4px;
+            unicode-bidi: isolate;
+            border-width: initial;
+            border-style: none;
+            border-color: initial;
+            border-image: initial;
+            font-size: calc(1rem + 0.3vw);
+            float: none;
+            width: auto;
+          "
+        >
+          Location On Map
+        </legend>
+        <div class="row d-flex flex-column gap-4">
+          <div class="h-100 rounded">
+            <google-map
+              height="500px"
+              width="100%"
+              [options]="options"
+              (mapClick)="addMarker($event)"
+            >
+              @for(marker of markers; track marker) {
+                <map-advanced-marker
+                #markerElem="mapAdvancedMarker"
+                [position]="marker.position"
+                >
+              </map-advanced-marker>
+              }
+            </google-map>
+          </div>
+          <div class="d-flex flex-column text-start gap-2">
+            <div class="d-flex">
+              <span
+                class="text-uppercase col-6"
+                style="width: fit-content; display: flex"
+                >Your Cordinates are</span
+              >&nbsp;:
+              <div class="col-6 gap-4">
+                  <div>{{ '' }}&deg;{{ '' }},</div>
+                <div>{{ '' }}&deg;{{ '' }}</div>
+              </div>
+            </div>
+            <div class="d-flex">
+              <span
+                class="text-uppercase col-6"
+                style="width: fit-content; display: flex"
+                >Location</span
+              >&nbsp;:
+              <div class="col-6 gap-4"></div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <fieldset
+        class="mb-3 w-100"
+        style="
+          display: block;
+          margin-inline-start: 2px;
+          margin-inline-end: 2px;
+          padding-block-start: 0.35em;
+          padding-inline: 1.5rem;
+          padding-block-end: 1.25em;
+          width: 100%;
+          border-width: 2px;
+          border-style: groove;
+          border-color: rgb(146, 146, 146);
+          border-image: initial;
+          border-radius: 1rem;
+        "
+      >
+        <legend
+          style="
+            display: block;
+            padding-inline: 4px;
+            unicode-bidi: isolate;
+            border-width: initial;
+            border-style: none;
+            border-color: initial;
+            border-image: initial;
+            font-size: calc(1rem + 0.3vw);
+            float: none;
+            width: auto;
+          "
+        >
+          Social Media Links
+        </legend>
+        <div class="row">
+          <div class="col-12" formArrayName="socialMediaArray">
+            @for ( socialLinkForm of socialMediaLinksArray().controls; track
+            socialLinkForm; let index = $index) {
+            <div
+              class="d-flex gap-2 align-items-center justify-content-between w-100"
+              [formGroupName]="index"
+            >
+              <mat-form-field appearance="outline" class="col-4">
+                <mat-label>Site Name</mat-label>
+                <mat-select
+                  formControlName="linkType"
+                  [errorStateMatcher]="matcher"
+                >
+                  <mat-option value="website"
+                    ><fa-icon [icon]="faInternet"></fa-icon
+                    >&nbsp;&nbsp;&nbsp;&nbsp;<span>Website</span></mat-option
+                  >
+                  <mat-option value="facebook"
+                    ><fa-icon [icon]="faFacebook"></fa-icon
+                    >&nbsp;&nbsp;&nbsp;&nbsp;<span>Facebook</span></mat-option
+                  >
+                  <mat-option value="x" class="col-12"
+                    ><fa-icon [icon]="faXTwitter"></fa-icon
+                    >&nbsp;&nbsp;&nbsp;&nbsp;<span>X</span></mat-option
+                  >
+                  <mat-option value="instagramlinkedin"
+                    ><fa-icon [icon]="faInstagram"></fa-icon
+                    >&nbsp;&nbsp;&nbsp;&nbsp;<span>Instagram</span></mat-option
+                  >
+                  <mat-option value="linkedin"
+                    ><fa-icon [icon]="faLinkedinIn"></fa-icon
+                    >&nbsp;&nbsp;&nbsp;&nbsp;<span>LinkedIn</span></mat-option
+                  >
+                  <mat-option value="snapchat"
+                    ><fa-icon [icon]="faSnapchat"></fa-icon
+                    >&nbsp;&nbsp;&nbsp;&nbsp;<span>Snapchat</span></mat-option
+                  >
+                  <mat-option value="reddit"
+                    ><fa-icon [icon]="faReddit"></fa-icon
+                    >&nbsp;&nbsp;&nbsp;&nbsp;<span>Reddit</span></mat-option
+                  >
+                  <mat-option value="whatsapp"
+                    ><fa-icon [icon]="faWhatsapp"></fa-icon
+                    >&nbsp;&nbsp;&nbsp;&nbsp;<span>WhatsApp</span></mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field
+                appearance="outline"
+                class="col-7"
+                style="flex: 1"
+              >
+                <mat-label>Link to your facebook profile</mat-label>
+                <input
+                  [errorStateMatcher]="matcher"
+                  matInput
+                  type="url"
+                  formControlName="socialMediaLink"
+                  class="col-12"
+                />
+              </mat-form-field>
+              <div class="col-1 pb-4">
+                <button
+                  type="button"
+                  mat-mini-fab
+                  color="error"
+                  (click)="removeSocialLink($index)"
+                >
+                  <fa-icon [icon]="faDelete"></fa-icon>
+                </button>
+              </div>
+            </div>
+            }
+          </div>
+          <div class="col-12 text-center pb-2">
+            <button
+              type="button"
+              mat-raised-button
+              (click)="addSocialLink()"
+              #addSocialLinkBtn
+            >
+              <fa-icon [icon]="faAdd"></fa-icon>
+              Add a Social Media Account
+            </button>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+  <div class="container d-flex justify-content-end gap-2">
+    <button type="button" mat-raised-button (click)="businessDetails.reset()">
+      Clear
+    </button>
+    <button
+      type="button"
+      [disabled]="!businessDetails.valid || !businessDetails.get('socialMediaArray')?.valid"
+      mat-flat-button
+      matStepperNext
+      (click)="submitBusinessDetails()"
+    >
+      Next
+    </button>
+  </div>
+</form>

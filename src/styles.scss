@@ -1,0 +1,37 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$jaky-app-theme: mat.define-theme(
+  (
+    color: (
+      use-system-variables: true,
+    ),
+    typography: (
+      use-system-variables: true,
+    )
+  )
+);
+
+$form-field-density: mat.define-theme(
+  (
+    density: (
+      scale: -3,
+    ),
+  )
+);
+
+:root {
+  @include mat.all-component-themes($jaky-app-theme);
+  @include mat.system-level-colors($jaky-app-theme);
+  @include mat.form-field-density($form-field-density);
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

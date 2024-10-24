@@ -1,0 +1,199 @@
+<form [formGroup]="personalDetails" class="pt-4">
+  <div class="row">
+    <div class="col-6">
+      <mat-form-field appearance="outline" class="col-12">
+        <mat-label>First Name</mat-label>
+        <input
+          [errorStateMatcher]="matcher"
+          matInput
+          formControlName="firstName"
+          class="col-12"
+        />
+        @if(personalDetails.controls['firstName'].hasError('required')) {
+        <mat-error> First name is <strong>required</strong> </mat-error>
+        }
+      </mat-form-field>
+    </div>
+    <div class="col-6">
+      <mat-form-field appearance="outline" class="col-12">
+        <mat-label>Last Name</mat-label>
+        <input
+          [errorStateMatcher]="matcher"
+          matInput
+          formControlName="lastName"
+          class="col-12"
+        />
+        @if(personalDetails.controls['lastName'].hasError('required')) {
+        <mat-error> Last name is <strong>required</strong> </mat-error>
+        }
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <mat-form-field appearance="outline" class="col-12">
+        <mat-label>Username</mat-label>
+        <input
+          [errorStateMatcher]="matcher"
+          matInput
+          formControlName="username"
+          class="col-12"
+        />
+        @if(personalDetails.controls['username'].hasError('required')) {
+        <mat-error> Username is <strong>required</strong> </mat-error>
+        }
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <mat-form-field appearance="outline" class="col-12">
+        <mat-label>Telephone</mat-label>
+        <span
+          matTextPrefix
+          class="text-center"
+          style="padding-inline-end: 1rem; align-self: center"
+          >+254</span
+        >
+        <input
+          [errorStateMatcher]="matcher"
+          matInput
+          type="tel"
+          formControlName="phone"
+          class="col-12"
+        />
+        @if(personalDetails.controls['phone'].hasError('required')) {
+        <mat-error> Phone Number is <strong>required</strong> </mat-error>
+        }
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <mat-form-field appearance="outline" class="col-12">
+        <mat-label>City / Town</mat-label>
+        <input
+          [errorStateMatcher]="matcher"
+          type="text"
+          matInput
+          formControlName="city"
+          class="col-12"
+        />
+        @if(personalDetails.controls['city'].hasError('required')) {
+        <mat-error> City is <strong>required</strong> </mat-error>
+        }
+      </mat-form-field>
+    </div>
+    <div class="col-4">
+      <mat-form-field appearance="outline" class="col-12">
+        <mat-label>Region / County</mat-label>
+        <input
+          [errorStateMatcher]="matcher"
+          type="text"
+          matInput
+          formControlName="region"
+          class="col-12"
+        />
+        @if(personalDetails.controls['region'].hasError('required')) {
+        <mat-error> County is <strong>required</strong> </mat-error>
+        }
+      </mat-form-field>
+    </div>
+    <div class="col-4">
+      <mat-form-field appearance="outline" class="col-12">
+        <mat-label>Country</mat-label>
+        <input
+          [errorStateMatcher]="matcher"
+          type="text"
+          matInput
+          formControlName="country"
+          class="col-12"
+        />
+        @if(personalDetails.controls['country'].hasError('required')) {
+        <mat-error> Country is <strong>required</strong> </mat-error>
+        }
+      </mat-form-field>
+    </div>
+  </div>
+  <fieldset
+    class="mb-3"
+    style="
+      display: block;
+      margin-inline-start: 2px;
+      margin-inline-end: 2px;
+      padding-block-start: 0.35em;
+      padding-inline: 1.5rem;
+      padding-block-end: 0.625em;
+      min-inline-size: min-content;
+      border-width: 2px;
+      border-style: groove;
+      border-color: rgb(146, 146, 146);
+      border-image: initial;
+      border-radius: 1rem;
+    "
+  >
+    <legend
+      style="
+        display: block;
+        padding-inline: 4px;
+        unicode-bidi: isolate;
+        border-width: initial;
+        border-style: none;
+        border-color: initial;
+        border-image: initial;
+        font-size: calc(1rem + 0.3vw);
+        float: none;
+        width: auto;
+      "
+    >
+      Gender and Roles
+    </legend>
+    <div class="row py-2">
+      <div class="col-6">
+        <mat-label>Gender</mat-label>
+        <mat-radio-group formControlName="gender" class="d-flex flex-column">
+          <mat-radio-button value="Male">Male</mat-radio-button>
+          <mat-radio-button value="Female">Female</mat-radio-button>
+          <mat-radio-button value="Other">Other</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="col-6">
+        <mat-label>Job Role</mat-label>
+        <mat-radio-group formControlName="job" class="d-flex flex-column">
+          <mat-radio-button value="Owner">Owner</mat-radio-button>
+          <mat-radio-button value="Employee">Employee</mat-radio-button>
+          <mat-radio-button value="Client">Client</mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+  </fieldset>
+  <div class="row">
+    <mat-form-field appearance="outline" class="col-12">
+      <mat-label>Tell clients a bit about you</mat-label>
+      <textarea
+        style="resize: none"
+        [errorStateMatcher]="matcher"
+        matInput
+        formControlName="bio"
+        class="col-12"
+      ></textarea>
+      @if(personalDetails.controls['bio'].hasError('required')) {
+      <mat-error> Bio is <strong>required</strong> </mat-error>
+      }
+    </mat-form-field>
+  </div>
+  <div class="container d-flex justify-content-end gap-2">
+    <button type="button" mat-raised-button (click)="personalDetails.reset()">
+      Clear
+    </button>
+    <button
+      type="button"
+      [disabled]="!personalDetails.valid"
+      mat-flat-button
+      matStepperNext
+      (click)="submitPersonalDetails()"
+    >
+      Next
+    </button>
+  </div>
+</form>

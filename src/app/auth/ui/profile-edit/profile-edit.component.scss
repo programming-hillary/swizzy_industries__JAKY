@@ -1,0 +1,9 @@
+.stepper-width {
+  width: 100%;
+}
+
+@media screen and (min-width: 800px) {
+  .stepper-width {
+    width: 600px;
+  }
+}

@@ -1,0 +1,89 @@
+<mat-sidenav-container [hasBackdrop]="true">
+  <mat-sidenav
+    #sidenav
+    mode="over"
+    [opened]="drawerState"
+    class="d-lg-none bg-dark rounded-0"
+    position="start"
+    [fixedInViewport]="true"
+    [fixedTopGap]="0"
+  >
+    <mat-nav-list class="text-uppercase text-primary">
+      <div class="container sidebar-head w-100 py-4 text-center">
+        <a
+          [routerLink]="['']"
+          class="navbar-brand h-100 m-0 p-0"
+          style="
+            border: none;
+            background-color: transparent;
+            text-decoration: none;
+          "
+        >
+          <img [src]="'assets/images/logo/logo_white.png'" height="100" />
+        </a>
+      </div>
+      <a mat-list-item>
+        <fa-icon matListItemIcon [icon]="faDashboard"></fa-icon>
+        <span matListItemTitle> Home </span>
+      </a>
+      <a mat-list-item>
+        <fa-icon matListItemIcon [icon]="faDashboard"></fa-icon>
+        <span matListItemTitle> Categories </span>
+      </a>
+      <a mat-list-item>
+        <fa-icon matListItemIcon [icon]="faDashboard"></fa-icon>
+        <span matListItemTitle> My Pins </span>
+      </a>
+      <a mat-list-item>
+        <fa-icon matListItemIcon [icon]="faDashboard"></fa-icon>
+        <span matListItemTitle> Analytics </span>
+      </a>
+      <div class="bottom w-100" style="position: absolute; bottom: 0">
+        <a mat-list-item>
+          <fa-icon matListItemIcon [icon]="faDashboard"></fa-icon>
+          <span matListItemTitle> Settings </span>
+        </a>
+        <button
+          mat-list-item
+          style="background-color: transparent; border: none"
+        >
+          <span
+            matListItemTitle
+            class="btn w-100 text-center btn-primary text-uppercase"
+          >
+            My Account
+          </span>
+        </button>
+        <div #header class="container-fluid px-0">
+          <div class="row gx-0 d-flex" style="font-size: 0.75rem">
+            <div class="col-lg-5 px-5">
+              <div
+                class="d-inline-flex align-items-center justify-content-between w-100 py-2"
+              >
+                <a class="me-3 text-white"
+                  ><fa-icon [icon]="faFacebookF"></fa-icon
+                ></a>
+                <a class="me-3 text-white"
+                  ><fa-icon [icon]="faXTwitter"></fa-icon
+                ></a>
+                <a class="me-3 text-white"
+                  ><fa-icon [icon]="faLinkedinIn"></fa-icon
+                ></a>
+                <a class="me-3 text-white"
+                  ><fa-icon [icon]="faInstagram"></fa-icon
+                ></a>
+                <a class="text-white"><fa-icon [icon]="faYoutube"></fa-icon></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="wrapper">
+      <app-header />
+      <router-outlet />
+      <app-footer />
+  </mat-sidenav-content>
+</mat-sidenav-container>

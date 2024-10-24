@@ -1,0 +1,63 @@
+<mat-toolbar
+  class="sticky-top shadow"
+  style="border-bottom-left-radius: 1rem; border-bottom-right-radius: 1rem"
+>
+  <div class="container d-flex align-items-center justify-content-between">
+    <div class="text-center">
+      <span class="text-uppercase" style="font-weight: 600; font-size: 1.5rem">
+        {{ isLoginMode }}
+      </span>
+    </div>
+    <div class="ml-auto">
+      <button
+        class="p-2"
+        type="button"
+        aria-label="Toggle theme"
+        mat-icon-button
+        matTooltip="Toggle theme"
+        aria-label="Change theme"
+        [matMenuTriggerFor]="themeMenu"
+      >
+        <fa-icon
+          class="d-flex justify-content-center align-items-center"
+          [icon]="isDark$() === 'dark' ? faDarkMode : faLightMode"
+        ></fa-icon>
+      </button>
+      <mat-menu #themeMenu="matMenu">
+        <button
+          class="text-center d-flex justify-content-start align-items-center gap-4"
+          mat-menu-item
+          (click)="changeTheme('auto')"
+        >
+          <fa-icon
+            style="padding-inline-end: 0.5rem"
+            [icon]="faSystemMode"
+          ></fa-icon>
+          <span> System </span>
+        </button>
+        <button
+          class="text-center d-flex justify-content-start align-items-center gap-4"
+          mat-menu-item
+          (click)="changeTheme('light')"
+        >
+          <fa-icon
+            style="padding-inline-end: 0.5rem"
+            [icon]="faLightMode"
+          ></fa-icon>
+          <span> Light </span>
+        </button>
+        <button
+          class="text-center d-flex justify-content-start align-items-center gap-4"
+          mat-menu-item
+          (click)="changeTheme('dark')"
+        >
+          <fa-icon
+            style="padding-inline-end: 0.5rem"
+            [icon]="faDarkMode"
+          ></fa-icon>
+          <span> Dark </span>
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+</mat-toolbar>
