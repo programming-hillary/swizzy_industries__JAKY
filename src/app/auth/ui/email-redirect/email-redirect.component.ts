@@ -20,6 +20,8 @@ export class EmailRedirectComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.queryParamMap.subscribe((data) => {
       this.pageToDisplay = data.get('mode')!
+      console.log(data.get('mode'));
+      console.log(this.pageToDisplay)
     })
   }
 }

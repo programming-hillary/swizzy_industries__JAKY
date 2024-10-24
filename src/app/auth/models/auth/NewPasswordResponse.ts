@@ -1,3 +1,4 @@
 export interface NewPasswordResponse {
-  email: string
+  email: string,
+  requestType: string
 }

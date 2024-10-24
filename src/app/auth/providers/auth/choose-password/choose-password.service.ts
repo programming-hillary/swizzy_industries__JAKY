@@ -14,9 +14,10 @@ export class ChoosePasswordService {
   handleNewPasswordCreation(password: string, oobCode: string) {
     const formData = {
       password: password,
-      oobCode: oobCode,
-      requestType: 'PASSWORD_RESET'
+      oobCode: oobCode
     };
+
+    console.log(formData)
 
     return this.http
       .post<NewPasswordResponse>(

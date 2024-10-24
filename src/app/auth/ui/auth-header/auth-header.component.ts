@@ -92,5 +92,6 @@ export class AuthHeaderComponent implements OnInit {
 
   changeTheme(theme: string) {
     this.themeManager.changeTheme(theme);
+    console.log(this.isLoginMode)
   }
 }

@@ -90,6 +90,7 @@ export class ChoosePasswordComponent implements OnInit {
           next: (res) => {
             this.router.navigate(['auth', 'password-reset-success'])
             this.isLoading = false
+            console.log(res)
           },
           error: (errMsg: string) => {
             this._snackBar.open(errMsg, 'Close', {

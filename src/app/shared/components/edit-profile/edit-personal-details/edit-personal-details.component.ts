@@ -13,6 +13,8 @@ import { MatRadioModule } from '@angular/material/radio'
 import { MatStepperModule } from '@angular/material/stepper'
 
 import { MyErrorStateMatcher } from '../../../../auth/ui/sign-up/sign-up.component'
+import { PersonalDetailsService } from '../../../../auth/providers/personal-info/personal-details.service'
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar'
 
 @Component({
   selector: 'app-edit-personal-details',
@@ -32,8 +34,14 @@ import { MyErrorStateMatcher } from '../../../../auth/ui/sign-up/sign-up.compone
 export class EditPersonalDetailsComponent {
   isEditable: boolean = true
 
-  private _formBuilder: FormBuilder = inject(FormBuilder)
   matcher = new MyErrorStateMatcher()
+  private _formBuilder: FormBuilder = inject(FormBuilder)
+  personalDetailsService: PersonalDetailsService = inject(PersonalDetailsService)
+
+  _snackBar: MatSnackBar = inject(MatSnackBar)
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center'
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom'
+  durationInSeconds: number = 3
 
   personalDetails: FormGroup = this._formBuilder.group({
     firstName: ['', [Validators.required]],
@@ -48,7 +56,29 @@ export class EditPersonalDetailsComponent {
     bio: ['', [Validators.required]],
   })
 
-  submitPersonalDetails() {
-    console.log(this.personalDetails)
+  submitPersonalDetails(form: any) {
+    if (this.personalDetails.valid) {
+      this.personalDetailsService.publishPersonalData(this.personalDetails.value)
+      .subscribe({
+        next: (res) => console.log(res),
+
+        error: (errMsg: string) => {
+          this._snackBar.open(errMsg, 'Close', {
+            horizontalPosition: this.horizontalPosition,
+            verticalPosition: this.verticalPosition,
+            duration: this.durationInSeconds * 1000
+          })
+        }
+      })
+
+      form.reset()
+    } else {
+      Object.values(this.personalDetails.controls).forEach((control) => {
+        if (control.invalid) {
+          control.markAsDirty()
+          control.updateValueAndValidity({ onlySelf: true })
+        }
+      })
+    }
   }
 }

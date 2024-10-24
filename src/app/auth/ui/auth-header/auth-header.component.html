@@ -4,9 +4,13 @@
 >
   <div class="container d-flex align-items-center justify-content-between">
     <div class="text-center">
-      <span class="text-uppercase" style="font-weight: 600; font-size: 1.5rem">
-        {{ isLoginMode }}
-      </span>
+      @if(isLoginMode === null || isLoginMode === '' || isLoginMode === undefined) {
+        <img [src]="isDark$() === 'dark' ? 'assets/logo/logo_white.png' : 'assets/logo/logo.png'" height="35" />
+      } @else {
+        <span class="text-uppercase" style="font-weight: 600; font-size: 1.5rem">
+          {{ isLoginMode }}
+        </span>
+      }
     </div>
     <div class="ml-auto">
       <button

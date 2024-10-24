@@ -11,8 +11,7 @@ import { finalize, lastValueFrom, Observable } from 'rxjs'
   selector: 'app-personal-upload-task',
   standalone: true,
   imports: [MatProgressSpinner],
-  templateUrl: './upload-personal-task.component.html',
-  styleUrl: './upload-personal-task.component.scss'
+  template: ``
 })
 export class UploadPersonalTaskComponent implements OnInit {
   @Input()
@@ -23,7 +22,6 @@ export class UploadPersonalTaskComponent implements OnInit {
   storage: AngularFireStorage = inject(AngularFireStorage)
   db: AngularFirestore = inject(AngularFirestore)
 
-  percentage!: Observable<number | undefined>
   snapshot!: Observable<any>
   downloadUrl!: string
 
@@ -35,7 +33,6 @@ export class UploadPersonalTaskComponent implements OnInit {
     const path = `personal_photos/${Date.now()}_${this.file.name}`
     const ref = this.storage.ref(path)
     this.task = this.storage.upload(path, this.file)
-    this.percentage = this.task.percentageChanges()
     this.snapshot = this.task.snapshotChanges().pipe(
       finalize(async() => {
         this.downloadUrl = await lastValueFrom(ref.getDownloadURL())

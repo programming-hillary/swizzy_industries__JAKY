@@ -1,4 +1,8 @@
-<form [formGroup]="businessDetails" class="pt-4">
+<form
+  [formGroup]="businessDetails"
+  (ngSubmit)="submitBusinessDetails(businessDetails)"
+  class="pt-4"
+>
   <div class="row">
     <div class="col-6">
       <mat-form-field appearance="outline" class="col-12">
@@ -108,14 +112,15 @@
               (mapClick)="addMarker($event)"
             >
               @for(marker of markers; track marker) {
-                <map-advanced-marker
+              <map-advanced-marker
                 #markerElem="mapAdvancedMarker"
                 [position]="marker.position"
-                >
+              >
               </map-advanced-marker>
               }
             </google-map>
           </div>
+          @if(showLocationDetails) {
           <div class="d-flex flex-column text-start gap-2">
             <div class="d-flex">
               <span
@@ -124,8 +129,8 @@
                 >Your Cordinates are</span
               >&nbsp;:
               <div class="col-6 gap-4">
-                  <div>{{ '' }}&deg;{{ '' }},</div>
-                <div>{{ '' }}&deg;{{ '' }}</div>
+                <div>{{ latitude }}&deg;{{ northiness }},</div>
+                <div>{{ longitude }}&deg;{{ eastiness }}</div>
               </div>
             </div>
             <div class="d-flex">
@@ -137,6 +142,7 @@
               <div class="col-6 gap-4"></div>
             </div>
           </div>
+        }
         </div>
       </fieldset>
     </div>
@@ -272,10 +278,12 @@
     </button>
     <button
       type="button"
-      [disabled]="!businessDetails.valid || !businessDetails.get('socialMediaArray')?.valid"
+      [disabled]="
+        !businessDetails.valid ||
+        !businessDetails.get('socialMediaArray')?.valid
+      "
       mat-flat-button
       matStepperNext
-      (click)="submitBusinessDetails()"
     >
       Next
     </button>
