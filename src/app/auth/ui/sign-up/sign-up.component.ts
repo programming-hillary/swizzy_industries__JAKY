@@ -100,7 +100,6 @@ export class SignUpComponent {
         )
         .subscribe({
           next: (res) => {
-            this.router.navigate(['auth', 'registration-success'])
             this.isLoading = false
           },
           error: (errMsg: string) => {

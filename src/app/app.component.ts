@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { AutoLoginService } from './auth/providers/auth/auto-logIn/auto-login.service';
+import { UserService } from './auth/providers/users/user-service.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,7 @@ import { AutoLoginService } from './auth/providers/auth/auto-logIn/auto-login.se
 })
 export class AppComponent implements OnInit {
 
-  localStorage: AutoLoginService = inject(AutoLoginService)
+  localStorage: UserService = inject(UserService)
 
   ngOnInit ()
   {

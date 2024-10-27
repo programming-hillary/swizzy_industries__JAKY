@@ -82,7 +82,6 @@ export class LoginComponent {
         )
         .subscribe({
           next: (res) => {
-            this.router.navigate(['/'])
             this.isLoading = false
           },
           error: (errMsg: string) => {

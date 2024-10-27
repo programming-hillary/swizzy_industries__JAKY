@@ -25,6 +25,7 @@ import { Subscription } from 'rxjs'
 import { MatMenuModule } from '@angular/material/menu'
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { ThemeManagerService } from '../../shared/services/themes/theme-provider/theme-manager.service'
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar'
 
 @Component({
   selector: 'app-header',
@@ -65,6 +66,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   sidebarService: SidebarService = inject(SidebarService)
   router: Router = inject(Router)
 
+  _snackBar: MatSnackBar = inject(MatSnackBar)
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center'
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom'
+  durationInSeconds: number = 3
+
   ngOnInit(): void {
     this.userSubscription = this.userService.createdUser.subscribe((user) => {
       if (user) {
@@ -84,7 +90,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onLogout() {
-    this.userService.handleLogout()
+    this.userService.handleLogout().subscribe({
+      next: () => {
+        this.router.navigate(['auth'])
+      },
+      error: (errMsg: string) => {
+        this._snackBar.open(errMsg, 'Close', {
+          horizontalPosition: this.horizontalPosition,
+          verticalPosition: this.verticalPosition,
+          duration: this.durationInSeconds * 1000
+        })
+      }}
+    )
   }
 
   onToggleDrawer(event: any) {

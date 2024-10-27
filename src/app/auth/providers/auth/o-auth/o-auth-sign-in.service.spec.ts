@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AutoLoginService } from './auto-login.service';
+import { OAuthSignInService } from './o-auth-sign-in.service';
 
-describe('AutoLoginService', () => {
-  let service: AutoLoginService;
+describe('OAuthSignInService', () => {
+  let service: OAuthSignInService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(AutoLoginService);
+    service = TestBed.inject(OAuthSignInService);
   });
 
   it('should be created', () => {
