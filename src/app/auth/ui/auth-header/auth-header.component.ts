@@ -52,11 +52,14 @@ export class AuthHeaderComponent implements OnInit {
     if (this.urlLocation.path() == '/auth/email-sent') {
       this.isLoginMode = 'Email sent'
     }
+    if (this.urlLocation.path() == '/auth/email-verification') {
+        this.isLoginMode = 'Verify Email'
+      }
     if (this.urlLocation.path() == '/auth/registration-success') {
       this.isLoginMode = 'registration successful'
     }
     if (this.urlLocation.path() == '/auth/password-reset-success') {
-      this.isLoginMode = 'password has been reset'
+      this.isLoginMode = 'password reset'
     }
 
     this.urlLocation.onUrlChange((url: string, state: unknown) => {
@@ -78,6 +81,9 @@ export class AuthHeaderComponent implements OnInit {
       if (url == '/auth/email-sent') {
         this.isLoginMode = 'Email sent'
       }
+      if (url == '/auth/email-verification') {
+        this.isLoginMode = 'Verify Email'
+      }
       if (url == '/auth/registration-success') {
         this.isLoginMode = 'registration successful'
       }
@@ -92,6 +98,5 @@ export class AuthHeaderComponent implements OnInit {
 
   changeTheme(theme: string) {
     this.themeManager.changeTheme(theme);
-    console.log(this.isLoginMode)
   }
 }

@@ -29,6 +29,7 @@ import { getStorage, provideStorage } from '@angular/fire/storage'
 import { provideServiceWorker } from '@angular/service-worker'
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field'
 import { environment } from '../environments/environment'
+import { FIREBASE_OPTIONS } from '@angular/fire/compat'
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -41,7 +42,15 @@ export const appConfig: ApplicationConfig = {
     ),
     provideHttpClient(withFetch()),
     provideClientHydration(),
-    provideFirebaseApp(() => initializeApp(environment)),
+    provideFirebaseApp(() => initializeApp({
+      apiKey: environment.firebaseConfig.apiKey,
+      authDomain: environment.firebaseConfig.authDomain,
+      projectId: environment.firebaseConfig.projectId,
+      storageBucket: environment.firebaseConfig.storageBucket,
+      messagingSenderId: environment.firebaseConfig.messagingSenderId,
+      appId: environment.firebaseConfig.appId,
+      measurementId: environment.firebaseConfig.measurementId
+    })),
     provideAuth(() => getAuth()),
     provideAnalytics(() => getAnalytics()),
     ScreenTrackingService,
@@ -61,5 +70,6 @@ export const appConfig: ApplicationConfig = {
         appearance: 'outline',
       },
     },
+    { provide: FIREBASE_OPTIONS, useValue: environment.firebaseConfig }
   ],
 }

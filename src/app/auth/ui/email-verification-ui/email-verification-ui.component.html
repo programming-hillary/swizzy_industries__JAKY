@@ -1,0 +1,67 @@
+<div class="wrapper">
+  <mat-card
+    class="shadow"
+    style="padding: 1rem; width: 400px; padding-inline-start: 0.5rem"
+  >
+    <mat-card-content class="email-verification w-100">
+      @if(isLoading){
+      <div
+        class="loader-holder"
+        style="
+          align-self: center;
+          place-self: center;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        "
+      >
+        <app-mini-loader></app-mini-loader>
+      </div>
+      } @else {
+      <h6 class="text-center pb-4">Please Enter Your Email:</h6>
+      <form
+        [formGroup]="verify_email_form"
+        (ngSubmit)="submitForm(verify_email_form)"
+      >
+        <mat-form-field appearance="outline" class="w-100">
+          <fa-icon
+            matPrefix
+            [icon]="faMail"
+            style="padding-inline-start: 0.5rem"
+          ></fa-icon>
+          <mat-label style="padding-inline-start: 0.5rem">Email</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="email"
+            [errorStateMatcher]="matcher"
+            style="padding-inline-start: 0.5rem"
+          />
+        </mat-form-field>
+
+        <button
+          mat-flat-button
+          class="email-verification-button text-uppercase"
+          style="flex: 1; margin-block: 1rem; border-radius: 0.5rem"
+        >
+          Send Verification Email
+        </button>
+      </form>
+      <div class="container">
+        <div class="row align-items-center justify-content-between">
+          <button
+            (click)="signInBtnClicked()"
+            mat-raised-button
+            class="flex-end"
+            style="flex: 1; border-radius: 0.5rem"
+          >
+            Back to Login
+          </button>
+        </div>
+      </div>
+      }
+    </mat-card-content>
+  </mat-card>
+</div>
+

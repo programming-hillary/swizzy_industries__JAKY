@@ -1,0 +1,27 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+  .email-verification {
+    .email-verification-margin {
+      margin-bottom: 2rem;
+    }
+
+    .email-verification-button {
+      width: 100%;
+    }
+
+    .email-verification-forgot {
+      align-self: flex-end;
+    }
+  }
+}

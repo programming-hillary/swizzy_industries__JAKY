@@ -6,6 +6,7 @@ import { catchError, defer, tap } from 'rxjs'
 import { IOAuthSignInResponse } from '../../../models/auth/OAuthSigInResponse'
 import { FacebookAuthProvider, GoogleAuthProvider } from '@angular/fire/auth'
 import { AngularFireAuth } from '@angular/fire/compat/auth'
+import { environment } from '../../../../../environments/environment'
 
 @Injectable({
   providedIn: 'root',
@@ -17,59 +18,59 @@ export class OAuthSignInService {
   fireAuth: AngularFireAuth = inject(AngularFireAuth)
 
   handleGoogleSignIn() {
-    // const formData = {
-    //   requestUri: '',
-    //   postBody: '',
-    //   returnSecureToken: true,
-    //   returnIdpCredential: true
-    // }
+    const formData = {
+      requestUri: '',
+      postBody: '',
+      returnSecureToken: true,
+      returnIdpCredential: true
+    }
 
-    // return this.http
-    //   .post<IOAuthSignInResponse>(
-    //     'https://identitytoolkit.googleapis.com/v1/accounts:signInWithIdp?key=AIzaSyC6oI3m6s6a6D2F9hK37HlFUZVBPaVmLJA',
-    //     formData
-    //   )
-    //   .pipe(
-    //     catchError((err) => {
-    //       return this.errorsService.handleAuthenticationErrors(err)
-    //     }),
-    //     tap((res) => this.userService.handleCreateUser(res)))
+    return this.http
+      .post<IOAuthSignInResponse>(
+        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithIdp?key=' + environment.firebaseConfig.apiKey,
+        formData
+      )
+      .pipe(
+        catchError((err) => {
+          return this.errorsService.handleAuthenticationErrors(err)
+        }),
+        tap((res) => this.userService.handleCreateUser(res)))
 
-    return defer(() =>
-      this.fireAuth.signInWithPopup(new GoogleAuthProvider())
-    ).pipe(
-      catchError((err) => {
-        return this.errorsService.handleAuthenticationErrors(err)
-      }),
-      tap((res) => localStorage.setItem('jaky-google-user', JSON.stringify(res.user)))
-    )
+    // return defer(() =>
+    //   this.fireAuth.signInWithPopup(new GoogleAuthProvider())
+    // ).pipe(
+    //   catchError((err) => {
+    //     return this.errorsService.handleAuthenticationErrors(err)
+    //   }),
+    //   tap((res) => localStorage.setItem('jaky-google-user', JSON.stringify(res.user)))
+    // )
   }
 
   handleFacebookSignIn() {
-    // const formData = {
-      //   requestUri: '',
-      //   postBody: '',
-      //   returnSecureToken: true,
-    //   returnIdpCredential: true
-    // }
-    // return this.http
-    //   .post<IOAuthSignInResponse>(
-    //     'https://identitytoolkit.googleapis.com/v1/accounts:signInWithIdp?key=AIzaSyC6oI3m6s6a6D2F9hK37HlFUZVBPaVmLJA',
-    //     formData
-    //   )
-    //   .pipe(
-    //     catchError((err) => {
-    //       return this.errorsService.handleAuthenticationErrors(err)
-    //     }),
-    //     tap((res) => this.userService.handleCreateUser(res)))
+    const formData = {
+        requestUri: '',
+        postBody: '',
+        returnSecureToken: true,
+      returnIdpCredential: true
+    }
+    return this.http
+      .post<IOAuthSignInResponse>(
+        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithIdp?key=' + environment.firebaseConfig.apiKey,
+        formData
+      )
+      .pipe(
+        catchError((err) => {
+          return this.errorsService.handleAuthenticationErrors(err)
+        }),
+        tap((res) => this.userService.handleCreateUser(res)))
 
-    return defer(() =>
-      this.fireAuth.signInWithPopup(new FacebookAuthProvider())
-    ).pipe(
-      catchError((err) => {
-        return this.errorsService.handleAuthenticationErrors(err)
-      }),
-      tap((res) => localStorage.setItem('jaky-facebook-user', JSON.stringify(res.user)))
-    )
+    // return defer(() =>
+    //   this.fireAuth.signInWithPopup(new FacebookAuthProvider())
+    // ).pipe(
+    //   catchError((err) => {
+    //     return this.errorsService.handleAuthenticationErrors(err)
+    //   }),
+    //   tap((res) => localStorage.setItem('jaky-facebook-user', JSON.stringify(res.user)))
+    // )
   }
 }

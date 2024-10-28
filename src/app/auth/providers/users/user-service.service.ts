@@ -1,9 +1,8 @@
-import { inject, Injectable } from '@angular/core'
+import { inject, Injectable, signal } from '@angular/core'
 import { User } from '../../models/users/user'
-import { BehaviorSubject, catchError, defer } from 'rxjs'
 import { Router } from '@angular/router'
-import { AngularFireAuth } from '@angular/fire/compat/auth'
 import { ErrorHandlerService } from '../auth/errors/error-handler.service'
+import { AngularFireAuth } from '@angular/fire/compat/auth'
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +12,7 @@ export class UserService {
   errorsService: ErrorHandlerService = inject(ErrorHandlerService)
   router: Router = inject(Router)
 
-  createdUser = new BehaviorSubject<User | null>(null)
+  createdUser = signal<User | null>(null)
   private tokenExpirationTimer: any
 
   handleCreateUser(res: any) {
@@ -27,14 +26,14 @@ export class UserService {
       expiresInTimeStamp
     )
 
-    this.createdUser.next(user)
+    this.createdUser.update(() => user)
     this.handleAutoLogout(+res.expiresIn * 1000)
 
     localStorage.setItem('jaky-user', JSON.stringify(user))
   }
 
   handleLogout() {
-    this.createdUser.next(null)
+    this.createdUser.update(() => null)
     localStorage.removeItem('jaky-user')
 
     if (this.tokenExpirationTimer) {
@@ -43,11 +42,11 @@ export class UserService {
 
     this.tokenExpirationTimer = null
 
-    return defer(() => this.fireAuth.signOut()).pipe(
-      catchError((err) => {
-        return this.errorsService.handleAuthenticationErrors(err)
-      })
-    )
+    // return defer(() => this.fireAuth.signOut()).pipe(
+    //   catchError((err) => {
+    //     return this.errorsService.handleAuthenticationErrors(err)
+    //   })
+    // )
   }
 
   handleAutoLogout(expirationTimer: number) {
@@ -72,7 +71,7 @@ export class UserService {
       if(authenticatedUser.token) {
         const timerValue = user._expiresIn.getTime() - new Date().getTime()
 
-        this.createdUser.next(authenticatedUser)
+        this.createdUser.update(() => authenticatedUser)
 
         this.handleAutoLogout(timerValue)
       }

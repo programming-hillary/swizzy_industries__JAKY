@@ -1,3 +1,4 @@
+import { EmailVerificationUiComponent } from './ui/email-verification-ui/email-verification-ui.component';
 import { Routes } from '@angular/router';
 import { AuthComponent } from './ui/auth.component';
 import { EmailRedirectComponent } from './ui/email-redirect/email-redirect.component';
@@ -8,6 +9,7 @@ import { ProfileEditComponent } from './ui/profile-edit/profile-edit.component';
 import { RegisterSuccessComponent } from './ui/register-success/register-success.component';
 import { SignUpComponent } from './ui/sign-up/sign-up.component';
 import { VerifyEmailComponent } from './ui/verify-email/verify-email.component';
+import { UnverifiedEmailComponent } from './ui/unverified-email/unverified-email.component';
 import { homeAuthGuardGuard } from './guards/can-activate-home/home-auth-guard.guard';
 
 export const routes: Routes = [
@@ -31,7 +33,7 @@ export const routes: Routes = [
       {
         path: 'edit-profile',
         component: ProfileEditComponent,
-        // canActivate: [homeAuthGuardGuard]
+        canActivate: [homeAuthGuardGuard]
       },
       {
         path: 'forgot-password',
@@ -42,9 +44,17 @@ export const routes: Routes = [
         component: VerifyEmailComponent,
       },
       {
+        path: 'email-verification',
+        component: EmailVerificationUiComponent,
+      },
+      {
+        path: 'unverified-email',
+        component: UnverifiedEmailComponent,
+      },
+      {
         path: 'registration-success',
         component: RegisterSuccessComponent,
-        // canActivate: [homeAuthGuardGuard]
+        canActivate: [homeAuthGuardGuard]
       },
       {
         path: 'email-redirect',

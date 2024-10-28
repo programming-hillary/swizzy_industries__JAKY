@@ -6,7 +6,6 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 export const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
     component: LayoutComponent,
     canActivate: [homeAuthGuardGuard],
     children: [
@@ -18,7 +17,6 @@ export const routes: Routes = [
   },
   {
     path: 'auth',
-    pathMatch: 'full',
     loadChildren: () => import('./auth/app.auth-routes').then(r => r.routes)
   },
   {

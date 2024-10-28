@@ -5,19 +5,27 @@
 
 <div class="wrapper">
   <button
-    mat-fab
+    mat-raised-button
     extended
-    style="background-color: goldenrod"
+    style="background-color: goldenrod; color: #222"
     (click)="googleAuthBtnClicked()"
   >
-    <fa-icon [icon]="faGoogleG"></fa-icon>
+    <fa-icon
+      [icon]="faGoogleG"
+      style="padding: 1rem; padding-inline-start: 0"
+    ></fa-icon>
+    <span>Sign in with Google</span>
   </button>
-  <!-- <button
-    mat-fab
+  <button
+    mat-raised-button
     extended
-    style="background-color: #1877f2"
+    style="background-color: #1877f2; color: #ddd"
     (click)="facebookAuthBtnClicked()"
   >
-    <fa-icon [icon]="faFacebookF"></fa-icon>
-  </button> -->
+    <fa-icon
+      [icon]="faFacebookF"
+      style="padding: 1rem; padding-inline-start: 0"
+    ></fa-icon>
+    <span>Sign in with Facebook</span>
+  </button>
 </div>
