@@ -26,7 +26,6 @@ import { MatMenuModule } from '@angular/material/menu'
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { ThemeManagerService } from '../../shared/services/themes/theme-provider/theme-manager.service'
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar'
-import { User } from '../../auth/models/users/user'
 
 @Component({
   selector: 'app-header',
@@ -61,7 +60,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isLoggedIn!: boolean
   userName: string = ''
 
-  private userSubscription!: User | null
+  private userSubscription!: Subscription
 
   userService: UserService = inject(UserService)
   sidebarService: SidebarService = inject(SidebarService)
@@ -73,13 +72,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
   durationInSeconds: number = 3
 
   ngOnInit(): void {
-    this.userSubscription = this.userService.createdUser()
-      if (this.userSubscription) {
-        this.userName = this.userSubscription.email
+    this.userSubscription = this.userService.createdUser.subscribe((user) => {
+      if (user) {
+        this.userName = user.email
         this.isLoggedIn = true
       } else {
         this.isLoggedIn = false
       }
+    })
   }
 
   themeManager = inject(ThemeManagerService)
@@ -90,18 +90,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onLogout() {
-    // this.userService.handleLogout().subscribe({
-    //   next: () => {
-    //     this.router.navigate(['auth'])
-    //   },
-    //   error: (errMsg: string) => {
-    //     this._snackBar.open(errMsg, 'Close', {
-    //       horizontalPosition: this.horizontalPosition,
-    //       verticalPosition: this.verticalPosition,
-    //       duration: this.durationInSeconds * 1000
-    //     })
-    //   }}
-    // )
+    this.userService.handleLogout()
+    this.router.navigate(['auth'])
   }
 
   onToggleDrawer(event: any) {
@@ -109,6 +99,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.userService.createdUser.update(() => null)
+    this.userSubscription.unsubscribe()
   }
 }

@@ -83,6 +83,7 @@ export class LoginComponent {
         .subscribe({
           next: (res) => {
             this.isLoading = false
+            this.router.navigate([''])
           },
           error: (errMsg: string) => {
             this._snackBar.open(errMsg, 'Close', {
@@ -103,6 +104,8 @@ export class LoginComponent {
           control.updateValueAndValidity({ onlySelf: true })
         }
       })
+
+      this.isLoading = false
     }
   }
 

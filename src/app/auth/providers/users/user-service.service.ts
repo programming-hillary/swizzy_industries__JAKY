@@ -1,5 +1,6 @@
-import { inject, Injectable, signal } from '@angular/core'
+import { inject, Injectable } from '@angular/core'
 import { User } from '../../models/users/user'
+import { BehaviorSubject, catchError, defer } from 'rxjs'
 import { Router } from '@angular/router'
 import { ErrorHandlerService } from '../auth/errors/error-handler.service'
 import { AngularFireAuth } from '@angular/fire/compat/auth'
@@ -12,7 +13,7 @@ export class UserService {
   errorsService: ErrorHandlerService = inject(ErrorHandlerService)
   router: Router = inject(Router)
 
-  createdUser = signal<User | null>(null)
+  createdUser = new BehaviorSubject<User | null>(null)
   private tokenExpirationTimer: any
 
   handleCreateUser(res: any) {
@@ -26,14 +27,14 @@ export class UserService {
       expiresInTimeStamp
     )
 
-    this.createdUser.update(() => user)
+    this.createdUser.next(user)
     this.handleAutoLogout(+res.expiresIn * 1000)
 
     localStorage.setItem('jaky-user', JSON.stringify(user))
   }
 
   handleLogout() {
-    this.createdUser.update(() => null)
+    this.createdUser.next(null)
     localStorage.removeItem('jaky-user')
 
     if (this.tokenExpirationTimer) {
@@ -71,7 +72,7 @@ export class UserService {
       if(authenticatedUser.token) {
         const timerValue = user._expiresIn.getTime() - new Date().getTime()
 
-        this.createdUser.update(() => authenticatedUser)
+        this.createdUser.next(authenticatedUser)
 
         this.handleAutoLogout(timerValue)
       }

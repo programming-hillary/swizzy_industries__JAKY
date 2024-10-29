@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http'
 import { environment } from '../../../../../environments/environment'
 import { EmailVerificationResponse } from '../../../models/auth/EmailVerificationResponse'
 import { UserService } from '../../users/user-service.service';
+import { User } from '../../../models/users/user';
 
 @Injectable({
   providedIn: 'root'
@@ -18,12 +19,12 @@ export class VerifyEmailService {
   router: Router = inject(Router)
 
   handleEmailVerification() {
+    const user = JSON.parse(localStorage.getItem('jaky-user')!)
+
     const formData = {
-      idToken: this.user.createdUser()?.token,
+      idToken: user._token,
       requestType: "VERIFY_EMAIL"
     }
-
-    console.log(formData)
 
     return this.http
       .post(
@@ -34,7 +35,7 @@ export class VerifyEmailService {
         catchError((err) => {
           return this.errorsService.handleAuthenticationErrors(err)
         }),
-        tap((res) => this.router.navigate(['auth', 'email-sent']))
+        tap((res) => this.router.navigate(['auth', 'email-redirect']))
       )
   }
 
@@ -42,8 +43,6 @@ export class VerifyEmailService {
     const formData = {
       oobCode: oobCode,
     }
-
-    console.log(formData);
 
     return this.http
       .post(
@@ -53,8 +52,7 @@ export class VerifyEmailService {
       .pipe(
         catchError((err) => {
           return this.errorsService.handleAuthenticationErrors(err)
-        }),
-        tap((res) => this.router.navigate(['auth', 'registration-success']))
+        })
       )
   }
 }

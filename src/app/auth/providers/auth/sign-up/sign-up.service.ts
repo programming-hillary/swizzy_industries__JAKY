@@ -4,7 +4,6 @@ import { AuthResponse } from '../../../models/auth/AuthResponse'
 import { catchError, defer, tap, throwError } from 'rxjs'
 import { ErrorHandlerService } from '../errors/error-handler.service'
 import { UserService } from '../../users/user-service.service'
-import { AngularFireAuth } from '@angular/fire/compat/auth'
 import { VerifyEmailService } from '../verify-email/verify-email.service'
 import { environment } from '../../../../../environments/environment'
 import { Router } from '@angular/router'
@@ -37,7 +36,7 @@ export class SignUpService {
         }),
         tap((res) => {
           this.userService.handleCreateUser(res)
-          this.router.navigate(['auth', 'email-verification'])
+          this.router.navigate(['auth', 'email-verifier'])
         })
       )
 

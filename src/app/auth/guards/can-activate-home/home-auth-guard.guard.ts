@@ -3,7 +3,6 @@ import { UserService } from '../../providers/users/user-service.service'
 import { inject } from '@angular/core'
 import { map, take } from 'rxjs/operators'
 import { Observable } from 'rxjs'
-import { toObservable } from '@angular/core/rxjs-interop'
 
 export const homeAuthGuardGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
@@ -17,9 +16,7 @@ export const homeAuthGuardGuard: CanActivateFn = (
   const userSubject: UserService = inject(UserService)
   const router: Router = inject(Router)
 
-  let userSub = toObservable(userSubject.createdUser)
-
-  return userSub.pipe(
+  return userSubject.createdUser.pipe(
     take(1),
     map((user) => {
 

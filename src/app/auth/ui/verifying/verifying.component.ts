@@ -27,11 +27,11 @@ export class VerifyingComponent implements OnInit {
             this.router.navigate(['auth', 'registration-success'])
           },
           error: () => {
-            this.router.navigate(['auth', 'email-unverified'])
+            this.router.navigate(['auth', 'unverified-email'])
           }
         })
       } else {
-        this.router.navigate(['auth', 'email-unverified'])
+        this.router.navigate(['auth', 'unverified-email'])
       }
     })
   }

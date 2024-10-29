@@ -49,12 +49,18 @@ export class AuthHeaderComponent implements OnInit {
     if (this.urlLocation.path() == '/auth/email-redirect?mode=resetPassword') {
       this.isLoginMode = 'create new password'
     }
+    if (this.urlLocation.path() == '/auth/email-redirect?mode=verifyEmail') {
+      this.isLoginMode = 'Verifying Email'
+    }
     if (this.urlLocation.path() == '/auth/email-sent') {
       this.isLoginMode = 'Email sent'
     }
     if (this.urlLocation.path() == '/auth/email-verification') {
-        this.isLoginMode = 'Verify Email'
-      }
+      this.isLoginMode = 'Verify Email'
+    }
+    if (this.urlLocation.path() == '/auth/unverified-email') {
+      this.isLoginMode = 'Unverified Email'
+    }
     if (this.urlLocation.path() == '/auth/registration-success') {
       this.isLoginMode = 'registration successful'
     }
@@ -78,11 +84,17 @@ export class AuthHeaderComponent implements OnInit {
       if (url == '/auth/email-redirect?mode=resetPassword') {
         this.isLoginMode = 'create new password'
       }
+      if (url == '/auth/email-redirect?mode=verifyEmail') {
+        this.isLoginMode = 'Verifying Email'
+      }
       if (url == '/auth/email-sent') {
         this.isLoginMode = 'Email sent'
       }
       if (url == '/auth/email-verification') {
         this.isLoginMode = 'Verify Email'
+      }
+      if (url == '/auth/unverified-email') {
+        this.isLoginMode = 'Unverified Email'
       }
       if (url == '/auth/registration-success') {
         this.isLoginMode = 'registration successful'

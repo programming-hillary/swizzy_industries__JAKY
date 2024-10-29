@@ -44,7 +44,7 @@ export const routes: Routes = [
         component: VerifyEmailComponent,
       },
       {
-        path: 'email-verification',
+        path: 'email-verifier',
         component: EmailVerificationUiComponent,
       },
       {

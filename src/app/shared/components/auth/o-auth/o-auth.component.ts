@@ -9,6 +9,8 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar'
+import { Router } from '@angular/router';
+import { ErrorHandlerService } from '../../../../auth/providers/auth/errors/error-handler.service';
 
 @Component({
   selector: 'app-o-auth',
@@ -24,6 +26,8 @@ export class OAuthComponent {
   @Output()
   isLoading = new EventEmitter<boolean>()
 
+  router: Router = inject(Router)
+
   _snackBar: MatSnackBar = inject(MatSnackBar)
   horizontalPosition: MatSnackBarHorizontalPosition = 'center'
   verticalPosition: MatSnackBarVerticalPosition = 'bottom'
@@ -32,9 +36,17 @@ export class OAuthComponent {
   oAuthSignIn: OAuthSignInService = inject(OAuthSignInService)
 
   googleAuthBtnClicked() {
-    this.oAuthSignIn.handleGoogleSignIn().subscribe({
-      next: () => {},
+    this.isLoading.emit(true)
+
+    this.oAuthSignIn.handleGoogleSignIn()
+    .subscribe({
+      next: () => {
+        console.log('start google next')
+        this.router.navigate([''])
+        this.isLoading.emit(false)
+      },
       error: (errMsg: string) => {
+        console.log('start google err')
         this._snackBar.open(errMsg, 'Close', {
           horizontalPosition: this.horizontalPosition,
           verticalPosition: this.verticalPosition,
@@ -47,8 +59,13 @@ export class OAuthComponent {
   }
 
   facebookAuthBtnClicked() {
+    this.isLoading.emit(true)
+
     this.oAuthSignIn.handleFacebookSignIn().subscribe({
-      next: () => {},
+      next: () => {
+        this.router.navigate([''])
+        this.isLoading.emit(false)
+      },
       error: (errMsg: string) => {
         this._snackBar.open(errMsg, 'Close', {
           horizontalPosition: this.horizontalPosition,

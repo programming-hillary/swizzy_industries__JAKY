@@ -73,13 +73,12 @@ export class EmailVerificationUiComponent {
 
     if (
       this.verify_email_form.valid &&
-      this.verify_email_form.value.email === this.user.createdUser()?.email
+      this.verify_email_form.value.email === this.user.createdUser.value?.email
     ) {
       this.sendEmailVerification
         .handleEmailVerification()
         .subscribe({
           next: (res) => {
-            console.log('email sent');
             this.isLoading = false
             this.router.navigate(['auth', 'email-sent'])
           },
@@ -94,7 +93,7 @@ export class EmailVerificationUiComponent {
           },
         })
       form.reset()
-    } else if (this.verify_email_form.value.email != this.user.createdUser()?.email) {
+    } else if (this.verify_email_form.value.email != this.user.createdUser.value?.email) {
       this._snackBar.open('Enter the correct email', 'Close', {
         horizontalPosition: this.horizontalPosition,
         verticalPosition: this.verticalPosition,
