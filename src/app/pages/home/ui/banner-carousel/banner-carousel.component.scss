@@ -1,34 +1,5 @@
-.container-fluid {
+.banner {
   border-bottom-left-radius: 2rem;
   border-bottom-right-radius: 2rem;
   padding-block: 5rem;
-
-  .row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .banner-holder {
-      place-content: center;
-      display: grid;
-
-      .row {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        img {
-          object-fit: cover;
-          object-position: center;
-          width: 100%;
-        }
-
-        .vertical-line {
-          transform: rotate(90deg);
-          width: 4rem;
-          place-content: center;
-        }
-      }
-    }
-  }
 }

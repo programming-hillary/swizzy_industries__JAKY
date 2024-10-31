@@ -27,10 +27,20 @@
 >
   <div class="col-lg-4 d-flex d-lg-none justify-content-between w-100">
     <a [routerLink]="['']" class="navbar-brand h-100 m-0 p-0">
-      <img [src]="isDark$() === 'dark' ? 'assets/logo/logo_white.png' : 'assets/logo/logo.png'" height="30" />
+      <img
+        [src]="
+          isDark$() === 'dark'
+            ? 'assets/logo/logo_white.png'
+            : 'assets/logo/logo.png'
+        "
+        height="30"
+      />
     </a>
     <button type="button" mat-icon-button (click)="onToggleDrawer($event)">
-      <fa-icon [icon]="faMenu"></fa-icon>
+      <fa-icon
+        class="d-flex justify-content-center align-items-center"
+        [icon]="faMenu"
+      ></fa-icon>
     </button>
   </div>
   <div
@@ -40,22 +50,46 @@
       [routerLink]="['']"
       class="navbar-brand px-5 h-100d-flex align-items-center"
     >
-      <img [src]="isDark$() === 'dark' ? 'assets/logo/logo_white.png' : 'assets/logo/logo.png'" height="35" />
+      <img
+        [src]="
+          isDark$() === 'dark'
+            ? 'assets/logo/logo_white.png'
+            : 'assets/logo/logo.png'
+        "
+        height="35"
+      />
     </a>
     <div class="justify-content-between d-none d-lg-flex text-uppercase">
       <div class="justify-content-between d-flex mr-auto py-0 gap-5">
         <a [routerLink]="['']" routerLinkActive="" class="nav-item nav-link"
+          >Home</a
+        >
+        <a [routerLink]="['about']" routerLinkActive="" class="nav-item nav-link"
           >About</a
         >
-        <a [routerLink]="['']" routerLinkActive="" class="nav-item nav-link"
+        <a [routerLink]="['categories']" routerLinkActive="" class="nav-item nav-link"
           >Categories</a
         >
-        <a [routerLink]="['']" routerLinkActive="" class="nav-item nav-link"
+        <a [routerLink]="['pins']" routerLinkActive="" class="nav-item nav-link"
           >My Pins</a
         >
       </div>
     </div>
     <div class="ml-auto">
+      <button
+        class="p-2 mx-2"
+        type="button"
+        aria-label="Search Anything"
+        mat-icon-button
+        matTooltip="Search Anything"
+        aria-label="Search Anything"
+        (click)="searchBtnClicked()"
+      >
+        <fa-icon
+          class="d-flex justify-content-center align-items-center"
+          [icon]="faSearch"
+        ></fa-icon>
+      </button>
       <button
         class="p-2 mx-2"
         type="button"
@@ -108,10 +142,10 @@
       <button
         class="p-2 mx-2"
         type="button"
-        aria-label="Toggle theme"
+        aria-label="User Actions"
         mat-icon-button
-        matTooltip="Toggle theme"
-        aria-label="Change theme"
+        matTooltip="User Actions"
+        aria-label="User Actions"
         [matMenuTriggerFor]="userMenu"
       >
         <fa-icon

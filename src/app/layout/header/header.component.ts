@@ -18,6 +18,7 @@ import {
   faMoon,
   faSun,
   faWandMagicSparkles,
+  faSearch,
 } from '@fortawesome/free-solid-svg-icons'
 import { SidebarService } from '../../shared/services/sidebar/sidebar.service'
 import { UserService } from '../../auth/providers/users/user-service.service'
@@ -56,6 +57,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   faLinkedinIn = faLinkedinIn
   faYoutube = faYoutube
   faXTwitter = faXTwitter
+  faSearch = faSearch
 
   isLoggedIn!: boolean
   userName: string = ''
@@ -100,5 +102,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.userSubscription.unsubscribe()
+  }
+
+  searchBtnClicked() {
+    this.router.navigate(['search'])
   }
 }

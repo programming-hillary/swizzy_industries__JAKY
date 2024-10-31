@@ -7,7 +7,7 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  background: #ffffff;
+  // background: #ffffff;
   box-shadow: 0 0 45px rgba(0, 0, 0, 0.08);
   transition: 0.5s;
 }
@@ -32,5 +32,5 @@
 .service-item:hover i,
 .service-item:hover h5,
 .service-item:hover p {
-  color: #ffffff !important;
+  // color: #ffffff !important;
 }

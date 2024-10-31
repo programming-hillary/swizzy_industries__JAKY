@@ -1,1 +1,38 @@
-<p class="text-white text-center">booking-map works!</p>
+<div class="row">
+  <div class="col-12">
+    <fieldset
+      class="mb-3"
+      style="
+        display: block;
+        margin-inline-start: 2px;
+        margin-inline-end: 2px;
+        min-inline-size: min-content;
+        border-width: 2px;
+        border-style: groove;
+        border-color: rgb(146, 146, 146);
+        border-image: initial;
+        border-radius: 1rem;
+        overflow: hidden;
+      "
+    >
+      <div class="row d-flex flex-column gap-4">
+        <div class="h-100 rounded">
+          <google-map
+            height="400px"
+            width="100%"
+            [options]="options"
+            (mapClick)="showLocationDetail($event)"
+          >
+            @for(marker of markers; track marker) {
+            <map-advanced-marker
+              #markerElem="mapAdvancedMarker"
+              [position]="marker.position"
+            >
+            </map-advanced-marker>
+            }
+          </google-map>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+</div>

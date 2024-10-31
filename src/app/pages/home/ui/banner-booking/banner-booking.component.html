@@ -1,24 +1,25 @@
-<div class="container">
-  <div class="bg-white shadow col-lg-7" style="padding: 15px; border-radius: 1rem; margin-inline: auto; margin-top: 1rem;">
-    <div class="row g-2">
-      <div class="col-md-12">
-        <div class="row g-2">
-          <div class="col-md-12">
-            <div class="date" id="date1" data-target-input="nearest">
-              <input
-                type="text"
-                class="form-control datetimepicker-input"
-                placeholder="Vendor or business name..."
-                data-target="#date1"
-                data-toggle="datetimepicker"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-12">
-        <button type="button" class="btn btn-primary w-100">Submit</button>
-      </div>
-    </div>
+<form
+  class="d-flex justify-content-center align-items-center flex-column"
+  [formGroup]="home_banner_search"
+  (ngSubmit)="submitForm(home_banner_search)"
+>
+  <mat-form-field appearance="outline" class="w-100">
+    <fa-icon
+      matPrefix
+      [icon]="faSearch"
+      style="padding-inline-start: 0.5rem"
+    ></fa-icon>
+    <mat-label style="padding-inline-start: 0.5rem">Search here...</mat-label>
+    <input
+      matInput
+      type="text"
+      formControlName="searchTxt"
+      [errorStateMatcher]="matcher"
+      style="padding-inline-start: 0.5rem"
+    />
+  </mat-form-field>
+
+  <div class="col-md-12">
+    <button mat-flat-button class="w-100" style="border-radius: .5rem;">Search</button>
   </div>
-</div>
+</form>

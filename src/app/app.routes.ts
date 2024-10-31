@@ -7,7 +7,7 @@ export const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
-    canActivate: [homeAuthGuardGuard],
+    // canActivate: [homeAuthGuardGuard],
     children: [
       {
         path: '',

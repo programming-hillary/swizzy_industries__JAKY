@@ -1,20 +1,10 @@
 mat-nav-list > a,
 mat-nav-list > div > a {
   span, fa-icon {
-    color: rgb(207, 233, 255);
     font-size: .75rem;
   }
   &:hover {
-    background-color: rgb(147, 203, 253);
     border-radius: 0;
-
-    span {
-      color: black;
-    }
-
-    fa-icon{
-      color: #fff0d8;
-    }
   }
 }
 
