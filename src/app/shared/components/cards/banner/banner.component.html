@@ -1,0 +1,40 @@
+<swiper-container
+    loop="true"
+    slides-per-view="auto"
+    speed="700"
+    navigation="false"
+    grab-cursor="true"
+    autoplay="true"
+    delay="300"
+    centered-slides="true"
+    coverflow-effect-rotate="50"
+    coverflow-effect-stretch="0"
+    coverflow-effect-depth="100"
+    coverflow-effect-modifier="1"
+    coverflow-effect-slide-shadows="true"
+    class="mySwiper w-100"
+  >
+    @for(loop of loops; track loop) {
+    <swiper-slide class="mySlider">
+      <div class="item">
+        <div class="container">
+          <a routerLink="auth"
+            ><img
+              style="width: 100%; height: 100%"
+              src="https://plchldr.co/i/500x150?text=&bg=111111&fc=CCCCCC"
+              alt="plchldr.co"
+              alt="special offers"
+          /></a>
+          <div class="carousel-caption">
+            <h4>Label number: {{ $index + 1 }}</h4>
+            <p>
+              Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec
+              id elit non mi porta gravida at eget metus. Nullam id dolor id
+              nibh ultricies vehicula ut id elit.
+            </p>
+          </div>
+        </div>
+      </div>
+    </swiper-slide>
+    }
+  </swiper-container>

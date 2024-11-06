@@ -1,48 +1,61 @@
 <div class="room-item shadow rounded overflow-hidden">
   <div class="position-relative">
-    <!-- <img class="img-fluid" src="assets/images/gallery/paduret.jpg" alt="" /> -->
-    <small
-      class="rounded py-1 px-3 ms-4"
-      >$100/Night</small
-    >
+    <img
+      class="img-fluid"
+      src="https://plchldr.co/i/300x200?text=&bg=111111&fc=CCCCCC"
+      alt=""
+      style="width: 100%; object-fit: cover"
+    />
   </div>
-  <div class="p-4 mt-2">
-    <div class="d-flex justify-content-between mb-3">
-      <h5 class="mb-0">Executive Suite</h5>
-      <div class="ps-2">
-        <small class="fa fa-star">
-          <fa-icon [icon]="faStar"></fa-icon>
-        </small>
-        <small class="fa fa-star">
-          <fa-icon [icon]="faStar"></fa-icon>
-        </small>
-        <small class="fa fa-star">
-          <fa-icon [icon]="faStar"></fa-icon>
-        </small>
-        <small class="fa fa-star">
-          <fa-icon [icon]="faStar"></fa-icon>
-        </small>
-        <small class="fa fa-star">
-          <fa-icon [icon]="faStar"></fa-icon>
-        </small>
-      </div>
+  <div
+    class="p-4 mt-2 text-center d-flex flex-column align-items-center justify-content-center"
+  >
+    <h5 class="mb-3 text-center">Executive Suite</h5>
+    <div class="ps-2 mb-5 text-center">
+      <small class="fa fa-star">
+        <fa-icon [icon]="faStar"></fa-icon>
+      </small>
+      <small class="fa fa-star">
+        <fa-icon [icon]="faStar"></fa-icon>
+      </small>
+      <small class="fa fa-star">
+        <fa-icon [icon]="faStar"></fa-icon>
+      </small>
+      <small class="fa fa-star">
+        <fa-icon [icon]="faStar"></fa-icon>
+      </small>
+      <small class="fa fa-star">
+        <fa-icon [icon]="faStar"></fa-icon>
+      </small>
+      <small><span>&nbsp;(0 ratings)</span></small>
     </div>
-    <div class="d-flex mb-3">
-      <small class="border-end me-3 pe-3"
-        ><fa-icon [icon]="faBed" class="me-2"></fa-icon>3 Bed</small
+    <div class="d-md-block d-none mb-3 align-items-center justify-content-center gap-2">
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate perspiciatis error
+        autem suscipit.
+      </p>
+    </div>
+    <div class="d-flex mb-3 align-items-center justify-content-center gap-2 w-100">
+      <small class="border-end text-center w-100"
+        ><fa-icon [icon]="faBed" class="d-block text-center"></fa-icon
+        >Bed</small
       >
-      <small class="border-end me-3 pe-3"
-        ><fa-icon [icon]="faBath" class="me-2"></fa-icon>2 Bath</small
+      <small class="border-end text-center w-100"
+        ><fa-icon [icon]="faBath" class="d-block text-center"></fa-icon
+        >Bath</small
       >
-      <small><fa-icon [icon]="faWifi" class="me-2"></fa-icon>Wifi</small>
+      <small class="text-center w-100"
+        ><fa-icon [icon]="faWifi" class="d-block text-center"></fa-icon
+        >Wifi</small
+      >
     </div>
-    <p class="text-body mb-3">
-      Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam
-      stet diam sed stet lorem.
-    </p>
-    <div class="d-flex justify-content-between">
-      <a class="btn btn-sm rounded py-2 px-4" href="">View Detail</a>
-      <a class="btn btn-sm rounded py-2 px-4" href="">Book Now</a>
-    </div>
+    <button
+      mat-flat-button
+      routerLink=""
+      style="border-radius: 0.5rem"
+      class="w-100"
+    >
+      Book
+    </button>
   </div>
 </div>

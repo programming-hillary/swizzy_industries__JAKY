@@ -1,0 +1,11 @@
+@media screen and (max-width: 800px) {
+  img {
+    width: 100%;
+    height: 200%;
+  }
+}
+
+.swiper-button-next svg,
+.swiper-button-prev svg {
+  color: aliceblue !important;
+}

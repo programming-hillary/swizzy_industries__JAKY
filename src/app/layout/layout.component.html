@@ -9,7 +9,9 @@
     [fixedTopGap]="0"
   >
     <mat-nav-list class="text-uppercase">
-      <div class="container sidebar-head w-100 py-4 text-center d-flex justify-content-between align-items-center">
+      <div
+        class="container sidebar-head w-100 py-4 text-center d-flex justify-content-between align-items-center"
+      >
         <a
           [routerLink]="['']"
           class="navbar-brand h-100 m-0 p-0"
@@ -33,7 +35,7 @@
             matTooltip="Search Anything"
             aria-label="Search Anything"
             (click)="searchBtnClicked()"
-            style="scale: .75;"
+            style="scale: 0.75"
           >
             <fa-icon
               class="d-flex justify-content-center align-items-center"
@@ -48,7 +50,7 @@
             matTooltip="Toggle theme"
             aria-label="Change theme"
             [matMenuTriggerFor]="themeMenu"
-            style="scale: .75;"
+            style="scale: 0.75"
           >
             <fa-icon
               class="d-flex justify-content-center align-items-center"
@@ -98,7 +100,7 @@
             matTooltip="User Actions"
             aria-label="User Actions"
             [matMenuTriggerFor]="userMenu"
-            style="scale: .75;"
+            style="scale: 0.75"
           >
             <fa-icon
               class="d-flex justify-content-center align-items-center"
@@ -182,7 +184,9 @@
 
   <mat-sidenav-content class="wrapper">
     <app-header />
-    <router-outlet />
+    <div class="container">
+      <router-outlet />
+    </div>
     <app-footer />
   </mat-sidenav-content>
 </mat-sidenav-container>

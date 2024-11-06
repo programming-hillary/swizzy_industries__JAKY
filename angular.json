@@ -36,10 +36,16 @@
               "src/styles.scss",
               "src/styles/bootstrap.min.css",
               "src/styles/themes/light.css",
-              "src/styles/themes/dark.css"
+              "src/styles/themes/dark.css",
+              "src/styles/css/base.css"
             ],
             "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "src/styles/js/google-code-prettify/prettify.js",
+              "src/styles/js/bootshop.js",
+              "src/styles/js/jquery.js",
+              "src/styles/js/jquery.lightbox-0.5.js",
+              "src/styles/js/less.js"
             ],
             "server": "src/main.server.ts",
             "prerender": true,

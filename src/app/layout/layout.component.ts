@@ -1,26 +1,46 @@
-import { SidebarService } from '../shared/services/sidebar/sidebar.service';
-import { Component, inject, OnInit, ViewChild } from '@angular/core';
-import { FooterComponent } from './footer/footer.component';
-import { HeaderComponent } from './header/header.component';
-import { Router, RouterModule } from '@angular/router';
-import { NewsletterComponent } from './newsletter/newsletter.component';
-import { MatButtonModule } from '@angular/material/button';
-import { MatListModule } from '@angular/material/list';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faDashboard, faEnvelope, faMoon, faSearch, faSun, faUserCircle, faWandMagicSparkles } from '@fortawesome/free-solid-svg-icons';
-import { faInstagram, faFacebookF, faLinkedinIn, faYoutube, faXTwitter } from '@fortawesome/free-brands-svg-icons';
-import { ThemeManagerService } from '../shared/services/themes/theme-provider/theme-manager.service';
-import { Subscription } from 'rxjs';
-import { UserService } from '../auth/providers/users/user-service.service';
-import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { Component, inject, OnInit, ViewChild, signal, effect } from '@angular/core'
+import { SidebarService } from '../shared/services/sidebar/sidebar.service'
+import { FooterComponent } from './footer/footer.component'
+import { HeaderComponent } from './header/header.component'
+import { Router, RouterModule } from '@angular/router'
+import { NewsletterComponent } from './newsletter/newsletter.component'
+import { MatButtonModule } from '@angular/material/button'
+import { MatListModule } from '@angular/material/list'
+import { MatSidenavModule } from '@angular/material/sidenav'
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import {
+  faDashboard,
+  faEnvelope,
+  faMoon,
+  faSearch,
+  faShoppingCart,
+  faSun,
+  faUserCircle,
+  faWandMagicSparkles,
+} from '@fortawesome/free-solid-svg-icons'
+import {
+  faInstagram,
+  faFacebookF,
+  faLinkedinIn,
+  faYoutube,
+  faXTwitter,
+} from '@fortawesome/free-brands-svg-icons'
+import { ThemeManagerService } from '../shared/services/themes/theme-provider/theme-manager.service'
+import { Subscription } from 'rxjs'
+import { UserService } from '../auth/providers/users/user-service.service'
+import { MatIconModule } from '@angular/material/icon'
+import { MatMenuModule } from '@angular/material/menu'
+import { MatToolbarModule } from '@angular/material/toolbar'
+import { CommonModule, Location } from '@angular/common'
+import { BannerComponent } from "../shared/components/cards/banner/banner.component";
+import { SidebarAccordionComponent } from "../shared/components/cards/sidebar-accordion/sidebar-accordion.component";
+import { SidebarProductsComponent } from "../shared/components/cards/sidebar-products/sidebar-products.component";
 
 @Component({
   selector: 'app-layout',
   standalone: true,
   imports: [
+    CommonModule,
     HeaderComponent,
     FooterComponent,
     RouterModule,
@@ -29,30 +49,31 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatListModule,
     MatButtonModule,
     FontAwesomeModule,
-    RouterModule,
-    FontAwesomeModule,
-    RouterModule,
     MatIconModule,
     MatMenuModule,
-    MatToolbarModule
-  ],
+    MatToolbarModule,
+    BannerComponent,
+    SidebarAccordionComponent,
+    SidebarProductsComponent
+],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss',
 })
 export class LayoutComponent implements OnInit {
-  faDashboard = faDashboard;
-  faInstagram = faInstagram;
-  faEnvelope = faEnvelope;
-  faFacebookF = faFacebookF;
-  faLinkedinIn = faLinkedinIn;
-  faYoutube = faYoutube;
-  faXTwitter = faXTwitter;
+  faDashboard = faDashboard
+  faInstagram = faInstagram
+  faEnvelope = faEnvelope
+  faFacebookF = faFacebookF
+  faLinkedinIn = faLinkedinIn
+  faYoutube = faYoutube
+  faXTwitter = faXTwitter
 
   faSearch = faSearch
   faUser = faUserCircle
   faDarkMode = faMoon
   faLightMode = faSun
   faSystemMode = faWandMagicSparkles
+  faShoppingCart = faShoppingCart
 
   isLoggedIn!: boolean
   userName: string = ''
@@ -66,11 +87,11 @@ export class LayoutComponent implements OnInit {
   drawerState: boolean = false
 
   @ViewChild('sidenav')
-  sidenav: any;
+  sidenav: any
 
   ngOnInit(): void {
     this.sidebarService.sidebarToggle.subscribe(() => {
-      this.sidenav.toggle();
+      this.sidenav.toggle()
     })
 
     this.userSubscription = this.userService.createdUser.subscribe((user) => {

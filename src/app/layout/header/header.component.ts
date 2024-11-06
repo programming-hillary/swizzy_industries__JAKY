@@ -19,6 +19,12 @@ import {
   faSun,
   faWandMagicSparkles,
   faSearch,
+  faHeart,
+  faThumbTack,
+  faHouseChimneyUser,
+  faIdCard,
+  faRightFromBracket,
+  faGear,
 } from '@fortawesome/free-solid-svg-icons'
 import { SidebarService } from '../../shared/services/sidebar/sidebar.service'
 import { UserService } from '../../auth/providers/users/user-service.service'
@@ -50,6 +56,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   faDarkMode = faMoon
   faLightMode = faSun
   faSystemMode = faWandMagicSparkles
+  faLogOut = faRightFromBracket
+  faProfile = faIdCard
+  faSettings = faGear
 
   faInstagram = faInstagram
   faEnvelope = faEnvelope
@@ -58,6 +67,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   faYoutube = faYoutube
   faXTwitter = faXTwitter
   faSearch = faSearch
+  faPin = faThumbTack
+  faFavorites = faHeart
+  faHome = faHouseChimneyUser
 
   isLoggedIn!: boolean
   userName: string = ''
@@ -102,9 +114,5 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.userSubscription.unsubscribe()
-  }
-
-  searchBtnClicked() {
-    this.router.navigate(['search'])
   }
 }

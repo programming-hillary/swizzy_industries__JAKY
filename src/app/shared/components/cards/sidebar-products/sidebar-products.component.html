@@ -1,0 +1,38 @@
+<mat-card appearance="outlined" class="my-4">
+  <mat-card-header>
+    <h5 style="text-align: center">Item 1</h5>
+  </mat-card-header>
+  <mat-card-content>
+    <div
+      class="sidebar-product-card d-flex align-items-center justify-content-between w-100 my-2"
+    >
+      <div class="img-holder" style="flex: 1">
+        <img
+          src="https://plchldr.co/i/300x200?text=&bg=111111&fc=CCCCCC"
+          alt="Item 1"
+          style="width: 100%; height: 100%; object-fit: cover"
+          class="rounded"
+        />
+      </div>
+      <div class="caption">
+        <h4
+          class="d-flex align-items-center justify-content-end flex-column gap-2"
+        >
+          <a class="btn" routerLink=""> <fa-icon [icon]="faZoomIn"></fa-icon> </a>
+          <a class="btn" routerLink=""><fa-icon [icon]="faShoppingCart"></fa-icon></a>
+        </h4>
+      </div>
+    </div>
+    <mat-chip-set>
+      <mat-chip>Chip 1</mat-chip>
+      <mat-chip>Chip 2</mat-chip>
+      <mat-chip>Chip 1</mat-chip>
+      <mat-chip>Chip 2</mat-chip>
+    </mat-chip-set>
+  </mat-card-content>
+  <mat-card-actions class="w-100">
+    <button class="w-100" mat-flat-button style="border-radius: 0.7rem">
+      BUY
+    </button>
+  </mat-card-actions>
+</mat-card>

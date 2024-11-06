@@ -1,29 +1,18 @@
-<!-- Carousel Start -->
-<!-- <div class="container-fluid p-0 mb-5">
-  <app-banner-carousel />
-</div> -->
-<!-- Carousel End -->
+<div class="row d-flex">
+  <div id="sidebar" class="col-3 d-lg-block d-none py-5">
+    <app-sidebar-accordion />
+    @if(route === 'home') {
+      @for(num of numbers; track num){
+      <app-sidebar-products />
+      }
+    }
+  </div>
+  <div class="main-content py-5" style="flex: 1">
+    <router-outlet />
 
-<!-- Categories Start -->
-<div class="container-xxl py-5">
-  <app-main-categories />
+    <!-- Back to Top -->
+    <a class="btn btn-lg btn-lg-square back-to-top"
+      ><fa-icon [icon]="faArrowUp"></fa-icon
+    ></a>
+  </div>
 </div>
-<!-- Categories End -->
-
-<!-- Service Start -->
-<div class="container-xxl py-5" style="border-radius: 2rem;">
-  <app-services />
-</div>
-<!-- Service End -->
-
-<!-- Providers Start -->
-<div
-  class="container my-5 py-5">
-  <app-popular-providers />
-</div>
-<!-- Providers End -->
-
-<!-- Back to Top -->
-<a class="btn btn-lg btn-lg-square back-to-top"
-  ><fa-icon [icon]="faArrowUp"></fa-icon
-></a>
